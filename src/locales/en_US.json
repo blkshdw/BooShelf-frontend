@@ -1,0 +1,9 @@
+{
+
+  "connectAuthorization": "Login",
+
+  "profileAuthExit": "Sign out",
+
+  "user_not_found": "Username or password is incorrect. Please try again"
+
+}

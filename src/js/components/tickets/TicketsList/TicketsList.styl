@@ -1,0 +1,27 @@
+:local .tickets-list-wrapper {
+    flex: 0 0 32.5%;
+    display: flex;
+    border-right: .125rem solid #ddd;
+}
+
+:local .tickets-list {
+    flex: 1;
+    margin-bottom: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border: none;
+    width: 80px;
+    background: #fff;
+}
+
+:local .tickets-list > :nth-child(n+1) {
+    border: none;
+    border-radius: 0;
+    border-bottom: .125rem solid #ddd;
+    margin: 0;
+}
+
+:local .tickets-list > .request-ticket {
+    text-align: center;
+    overflow: auto;
+}

@@ -1,0 +1,68 @@
+:local .ticket {
+    flex: 1 1 auto;
+    display: flex;
+    font-size: 1.25rem;
+    border-radius: 0;
+}
+
+:local .ticket .avatar {
+    width: 50px;
+    height: 50px;
+    margin: auto 0;
+    flex: 0 0 50px;
+    border-radius: 100%;
+}
+
+:local .ticket .info {
+    margin-left: 0.75rem;
+    flex: 1;
+    display: block;
+}
+
+:local .ticket .info .line {
+    display: flex;
+}
+
+:local .ticket .info .peer {
+    flex: 1;
+}
+
+:local .ticket .peer .channel {
+    font-size: 1.125rem;
+    color: #888;
+}
+
+:local .ticket.ticket-active .peer .channel {
+    color: #fff;
+}
+
+:local .ticket .info .datetime {
+    flex: 0 0 auto;
+    color: #888;
+}
+
+:local .ticket.ticket-active .info .datetime {
+    color: #fff;
+}
+
+:local .info .message {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+:local .ticket .info .new-messages-count {
+    flex: 0 0 auto;
+    background: #888;
+    color: #FFF;
+    padding: 0 0.3rem;
+    border-radius: 0.3rem;
+    box-sizing: border-box;
+    margin-left: 0.5rem;
+}
+
+:local .ticket.ticket-active .info .new-messages-count {
+    background: #FFF;
+    color: #333;
+}

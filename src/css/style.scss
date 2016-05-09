@@ -1,0 +1,166 @@
+@import "~react-toolbox/lib/commons";
+@import 'defaults.scss';
+@import 'fonts.scss';
+@import 'variables.scss';
+@import 'mixins.scss';
+@import 'animate.css';
+@import 'react-select.scss';
+
+.dropdown li:hover {
+   background-color: rgb(238,238,238);
+}
+
+.main {
+    display: flex;
+    height: 100%;
+    max-width: 1280;
+    min-width: 768;
+    margin: auto;
+}
+
+._box-flex-def {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    align-items: stretch;
+    //overflow: hidden; wtf? hide elements when it can't be sized to window
+
+    &.scrollable {
+        min-height: 0;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+}
+
+.markdown-body {
+
+    .scrollable__content {
+        //min-height: min-content;
+        display: block;
+    }
+}
+
+/* set box row type */
+.box-row {
+    @extend ._box-flex-def;
+    @include _align-any();
+    
+    flex-direction: row;
+    
+    &.align-left {
+        justify-content: flex-start;
+    }
+    &.align-right {
+        justify-content: flex-end;
+    }
+    &.nowrap {
+        flex-wrap: nowrap;
+    }
+    &.auto-width {
+        width: auto !important;
+    }
+    &.auto-height {
+        height: auto !important;
+    }
+    &.vertical-align {
+        align-items: center;
+    }
+    &.spacer {
+        height: 100%;
+    } 
+}
+
+/* set box column type */
+.box-col {
+    @extend ._box-flex-def;
+    @include _align-any();
+    
+    flex-direction: column;
+    
+    &.align-top {
+        justify-content: flex-start;
+    }
+    &.align-bottom {
+        justify-content: flex-end;   
+    }
+    &.nowrap {
+        flex-wrap: nowrap;
+    }
+    &.auto-width {
+        width: auto !important;
+    }
+    &.auto-height {
+        height: auto !important;
+    }
+
+    &.spacer {
+        height: 100%;
+    }
+}
+
+
+/* set md dimension prefix  */
+@for $i from 1 through 10 {
+    .md-#{$i} {
+        width: 10% * $i;
+        overflow-y: auto;
+    }
+}
+
+.button {
+    /* определяет только основные свойства для кнопки. бакграунд, ховер, loading, текст */
+    display: flex;
+    cursor: pointer;
+    font: {
+        size: $buttonTextSize;
+        weight: $buttonFontWeight;
+        family: 'Roboto', sans-serif;
+    };
+    color: $buttonTextColor;
+    padding: 0 10px;
+}
+
+.no-decoration {
+    text-decoration: none;
+    outline: 0;
+}
+.no-overflow {
+    overflow: initial;
+}
+
+@import './variables.scss';
+
+body {
+    background: #fff; //#f2f2f2; //#D7DADD;
+}
+
+body *{
+    box-sizing: border-box;
+}
+
+.inner-content-padding {
+  padding: 0 15px;
+}
+
+/* BUTTONS */
+.gray-button {
+  display: block;
+  text-align: center;
+  font-family: $fontCond;
+  font-size: 14px;
+  color: #4e4e4e;
+  height: 32px;
+  line-height: 34px;
+  cursor: pointer;
+  background: $grayColor;
+  border-radius: 3px;
+  transition: background 0.2s ease, color 0.2s ease;
+  user-select: none;
+  outline: none;
+  border: none;
+
+  &:hover {
+    background: $yellowColor;
+  }
+}
+

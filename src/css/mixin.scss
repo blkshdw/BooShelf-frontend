@@ -1,0 +1,26 @@
+/* main content mixins */
+
+$indent: 10px;
+
+@mixin stage-section() {
+    margin-bottom: $indent;
+}
+
+@mixin filter-section() {
+    margin: {
+        left: $indent;
+        bottom: $indent;
+    }
+
+    & button {
+        margin-right: $indent;
+    }
+}
+
+@mixin content-section() {
+    margin-left: $indent;
+
+    & > div {
+        overflow-y: visible;
+    }
+}

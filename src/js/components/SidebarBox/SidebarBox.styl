@@ -1,0 +1,28 @@
+:local .sidebar-box {
+  width: 0px;
+  height: 100%;
+  left: 0px;
+  top: 0;
+  z-index: 100;
+  position: relative;
+  background: white;
+  transition: width 0.5s;
+  .content {
+    .nav-but {
+      flex: 0 1 auto;
+      .icon {
+        padding-right: 5px;
+      }
+    }
+  }
+
+  &.active {
+    width: 240px;
+  }
+}
+
+.nav-child {
+   padding-left: 55px;
+}
+
+

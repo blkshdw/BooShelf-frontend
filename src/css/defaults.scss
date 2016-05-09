@@ -1,0 +1,44 @@
+@import "variables.scss";
+@import 'mixins.scss';
+// html, body
+// {
+//     height: 100%;
+// }
+
+
+body, a {
+    font: 14px/18px 'Roboto',Arial,Verdana,sans-serif;
+    color: $textColor;
+}
+
+
+h1 {
+    //$fsize: 28;
+    //font-size: #{$fsize}px;
+    //@include header-auto-margin($fsize);
+    // margin: #{$s}px 10px #{$s/1.7}px;
+}
+
+h2 {
+    //$fsize: 24;
+    //font-size: #{$fsize}px;
+    //@include header-auto-margin($fsize);
+}
+
+h3 {
+    //$fsize: 20;
+    //font-size: #{$fsize}px;
+    //@include header-auto-margin($fsize);
+}
+
+h4 {
+    //$fsize: 16;
+    //font-size: #{$fsize}px;
+    //@include header-auto-margin($fsize);
+}
+
+p {
+    //margin: 5px 10px 5x 0;
+}
+
+a {}

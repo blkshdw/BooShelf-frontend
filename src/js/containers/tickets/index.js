@@ -1,0 +1,1 @@
+export TicketsContent from './TicketsContent';

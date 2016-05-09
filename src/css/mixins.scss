@@ -1,0 +1,25 @@
+@mixin _align-any() {
+    &.align-center {
+        justify-content: center;
+    }
+    &.align-middle {
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+@mixin header-auto-margin($fsize) {
+    margin: #{$fsize}px 10px #{$fsize/1.8}px 0;
+}
+
+@mixin no-select() {
+    user-select: none;
+    outline: none;
+}
+
+@mixin button-normalize() {
+    @include no-select();
+    border: 0;
+    border-radius: 0;
+    cursor: pointer;
+}

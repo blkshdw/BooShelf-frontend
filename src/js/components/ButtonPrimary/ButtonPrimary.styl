@@ -1,0 +1,28 @@
+@import '../../../css/mixins.scss';
+
+:local .button-primary {
+    @include button-normalize();
+    background: transparent; //#EAEBEF;
+    height: 52px;
+    max-width: 300px;
+    padding: 0 20px;
+    //color: #494A4F;
+    color: #616161;
+    font-size: 15px;
+    font-weight: 400;
+    
+    &:hover {
+        //transition: 0.5s;
+        //background: #D7D8DE;
+        background-color: rgba(0,0,0,.03);
+        border-radius: 2px;
+    }
+
+    &:focus,
+    &.active {
+        //background: #1076ad;
+        background-color: rgba(0,0,0,.05);
+        color: #212121;
+        font-weight: bold;
+    } 
+}
