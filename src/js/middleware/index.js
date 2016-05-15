@@ -1,4 +1,4 @@
-export Schemas, { wsSchemas } from './schemas';
+export Schemas, { wsSchemas } from './api/schemas';
 
 export apiMiddleware from './api';
 export promiseMiddleware from './redux-promise-middleware';

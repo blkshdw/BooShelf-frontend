@@ -15,10 +15,10 @@ import {
     LOGOUT_SUCCESS,
     LOGOUT_ERROR
 } from 'constants';
-import { connectWebSocket } from 'middleware/socket/connect';
 
 const initialState = {
     user: null,
+    token: window.localStorage.getItem('token'),
     isLoginLoading: false,
     isCheckAuthLoading: false,
     checkAuthError: '',
@@ -46,17 +46,19 @@ export default function(state = initialState, action) {
 
     case REGISTRATION_SUCCESS:
     case CHECK_AUTH_SUCCESS:
-        connectWebSocket();
+        window.localStorage.setItem('token', payload.token);
         return {
             ...initialState,
-            user: payload && payload.result
+            user: payload.id,
+            token: payload.token
         };
 
     case LOGIN_SUCCESS:
-        connectWebSocket();
+        window.localStorage.setItem('token', payload.token);
         return {
             ...initialState,
-            user: payload.result
+            user: payload.id,
+            token: payload.token
         };
 
     case REGISTRATION_ERROR:

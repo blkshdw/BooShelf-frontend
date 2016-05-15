@@ -1,5 +1,4 @@
 import { fetchUsers } from './users';
-import { fetchTickets, fetchTicketsCount } from './tickets';
 import { appIsReady } from 'selectors';
 import {
     FETCH_INITIAL_DATA,

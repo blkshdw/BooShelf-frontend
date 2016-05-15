@@ -1,1 +1,0 @@
-export PeopleContent from './PeopleContent';

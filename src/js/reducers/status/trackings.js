@@ -30,7 +30,7 @@ export default function(state = initialState, action) {
             };
 
         case FETCH_TRACKINGS_SUCCESS:
-        case FFETCH_TRACKING_SUCCESS:
+        case FETCH_TRACKING_SUCCESS:
             return {
                 ...state,
                 isFetching: false,

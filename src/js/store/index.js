@@ -5,19 +5,19 @@ import createLogger from 'redux-logger';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { reduxReactRouter } from 'redux-router';
 import createHistory from 'history/lib/createBrowserHistory';
-import { promiseMiddleware, apiMiddleware, socketMiddleware } from 'middleware';
+import { promiseMiddleware, apiMiddleware } from 'middleware';
 let finalCreateStore;
 
 if (process.env.NODE_ENV === 'development') {
     finalCreateStore = compose(
-        applyMiddleware(thunkMiddleware, combineActions, apiMiddleware, promiseMiddleware, socketMiddleware, createLogger({collapsed: true})),
+        applyMiddleware(thunkMiddleware, combineActions, apiMiddleware, promiseMiddleware, createLogger({collapsed: true})),
         reduxReactRouter({ createHistory }),
         require('containers/DevTools').instrument(),
         require('redux-devtools').persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/))
     )(createStore);
 } else {
     finalCreateStore = compose(
-        applyMiddleware(thunkMiddleware, combineActions, apiMiddleware, promiseMiddleware, socketMiddleware),
+        applyMiddleware(thunkMiddleware, combineActions, apiMiddleware, promiseMiddleware),
         reduxReactRouter({ createHistory }),
     )(createStore);
 }

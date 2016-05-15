@@ -1,11 +1,10 @@
 module.exports = {
 
-    storageUrl: '//storage.googleapis.com/supportus/',
 
     api: {
-        host: 'https://dev.supportus.online',
-        port: '443',
-        suffix: 'graphql'
+        host: 'http://localhost',
+        port: 18012,
+        suffix: 'api'
     },
 
     socket: 'https://dev.supportus.online'

@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import cx from './CheckboxField.styl';
+import cx from './CheckboxField.scss';
 
 export default class CheckboxField extends Component {
     static propTypes = {
@@ -22,7 +22,7 @@ export default class CheckboxField extends Component {
         return (
             <div className={cx('box-row nowrap', 'checkbox-field', className)} onClick={(event) => onClick(event, checked)}>
                 <div className={cx('check')}>
-                    {checked && <i className={cx('icon-sprite smart-ico-tick', 'icon')}></i>}
+                    {checked && <i className={cx( 'icon', 'glyphicon glyphicon-ok')}> </i>}
                 </div>
                 {title && <div className={cx('title')}>{title}</div>}
             </div>

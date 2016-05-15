@@ -8,10 +8,10 @@ import Logout from './Logout';
 import AnonymousApp from './AnonymousApp';
 import AuthenticatedApp from './AuthenticatedApp';
 import NotFound from 'components/NotFound';
-import { ChannelsContent } from './channels';
-import { TicketsContent } from './tickets';
-import { PeopleContent } from './people';
-import { StatisticsContent } from './statistics';
+import { UserCardBooksContent, UserCardContent, UsersListContent } from './users';
+import { MeContent, MyBooks } from './me';
+import { BookCardContent, BooksContent } from './books';
+
 
 function requireAuth(nextState, replaceState) {
     if (!userIsLoggedInSelector(store.getState())) {
@@ -26,7 +26,7 @@ function requireAuth(nextState, replaceState) {
 
 function requireNotLoggedIn(nextState, replaceState) {
     if (userIsLoggedInSelector(store.getState())) {
-        replaceState(null, '/channels');
+        replaceState(null, '/me');
     }
 }
 
@@ -40,12 +40,11 @@ export default (
         <Route component={AuthenticatedApp} onEnter={requireAuth} ignoreScrollBehavior>
             <Route component={Main}>
                 <Route path="me" />
-                <Route path="books" components={{ content: ChannelsContent }} />
-                <Route path="books/:bookId" components={{ content: ChannelsContent }} />
-                <Route path="users" components={{ content: PeopleContent }} />
-                <Route path="users/:userId" components={{ content: PeopleContent }} />
-                <Route path="users/:userId/books" components={{content: PeopleContent}} />
-                <Route path="reviews" components={{content: PeopleContent}} />
+                <Route path="books" components={{ content: BooksContent }} />
+                <Route path="books/:bookId" components={{ content: BookCardContent }} />
+                <Route path="users" components={{ content: UsersListContent }} />
+                <Route path="users/:userId" components={{ content: UserCardContent }} />
+                <Route path="users/:userId/books" components={{content: UserCardBooksContent}} />
             </Route>
         </Route>
         <Route path="*" component={NotFound} />

@@ -29,7 +29,7 @@ export function registrationSubmit(values) {
                 REGISTRATION_ERROR
             ],
             method: 'POST',
-            endpoint: '/signup',
+            endpoint: '/users',
             data: values,
             schema: Schemas.USER
         },
@@ -55,6 +55,7 @@ export function loginSubmit(values) {
 }
 
 export function checkAuth() {
+    console.log(CALL_API);
     return {
         [CALL_API]: {
             types: [

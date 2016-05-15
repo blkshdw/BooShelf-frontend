@@ -10,11 +10,9 @@ export const CALL_API = Symbol('Call API');
 const X_USER_DEVICE_HEADER = 'web';
 
 const request = (acceptedType, token) => new Request({
-    path: `${config.api.host}:${config.api.port}/${config.api.suffix}`,
+    path: `${config.api.host}:${config.api.port}`,
     headers: {
-        'X-USER-DEVICE': X_USER_DEVICE_HEADER,
-        'Accept': acceptedType,
-        'Token': token
+        'Accept': acceptedType
     }
 });
 
@@ -84,7 +82,10 @@ export default store => next => action => {
         acceptedType = 'application/json';
     }
 
-    const token = user ? user.token : '';
+
+    const user = currentUserSelector(store.getState());
+
+    let token = user ? user.token : '';
 
     if (typeof method !== 'string') {
         throw new Error('Specify a string method type.');
@@ -114,7 +115,7 @@ export default store => next => action => {
     const [ requestType, successType, failureType ] = types;
     next(actionWith({ type: requestType }));
 
-    return callApi(method, parseEndpoint(store.getState(), endpoint), data, query, schema, acceptedType).then(
+    return callApi(method, endpoint, data, query, schema, acceptedType).then(
         response => next(actionWith({
             payload: response,
             type: successType

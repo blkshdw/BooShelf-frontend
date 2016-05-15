@@ -1,1 +1,0 @@
-export ChannelsContent from './ChannelsContent';

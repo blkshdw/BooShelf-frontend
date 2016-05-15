@@ -29,7 +29,7 @@ export default class Request {
     setHeaders(data) {
         if (data instanceof FormData) return this;
 
-        Object.assign(this.headers, { 'Content-type': TYPE_JSON });
+        Object.assign(this.headers, { 'content-type': TYPE_JSON });
         return this;
     }
 
@@ -50,8 +50,6 @@ export default class Request {
                 method: this.type,
                 body: this.body,
                 headers: this.headers,
-                credentials: 'include',
-                mode: 'cors'
             })
                 .then(response => {
                     if (response.status === 200 || response.status === 201) {
