@@ -86,7 +86,7 @@
     "json-loader": "^0.5.3",
     "lodash": "^3.10.1",
     "moment": "^2.11.2",
-    "node-sass": "3.4.2",
+    "node-sass": "3.3.3",
     "normalizr": "^1.0.0",
     "npm": "^3.8.6",
     "qs": "^5.2.0",
