@@ -6,30 +6,17 @@ import { authenticatedAppSelector } from 'selectors';
 import Loader from 'components/Loader';
 import cx from './AuthenticatedApp.styl';
 
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ fetchInitialDataIfNeeded, fetchTicketsCount }, dispatch);
-}
-
-@connect(authenticatedAppSelector, mapDispatchToProps)
+@connect(authenticatedAppSelector)
 export default class AuthenticatedApp extends Component {
     static propTypes = {
-        children: PropTypes.element.isRequired,
-        ready: PropTypes.bool.isRequired,
-        fetchInitialDataIfNeeded: PropTypes.func.isRequired,
-        fetchTicketsCount: PropTypes.func
+        children: PropTypes.element.isRequired
     }
 
     componentWillMount() {
-        this.props.fetchInitialDataIfNeeded();
-        this.props.fetchTicketsCount();
     }
 
     render() {
-        const { ready, children } = this.props;
-
-        if (!ready) {
-            return (<Loader />);
-        }
+        const { children } = this.props;
 
         return (
             <section className={cx('auth-app')}>

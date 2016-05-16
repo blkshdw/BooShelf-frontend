@@ -55,7 +55,6 @@ export function loginSubmit(values) {
 }
 
 export function checkAuth() {
-    console.log(CALL_API);
     return {
         [CALL_API]: {
             types: [

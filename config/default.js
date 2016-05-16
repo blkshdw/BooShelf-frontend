@@ -3,7 +3,7 @@ module.exports = {
 
     api: {
         host: 'http://localhost',
-        port: 18012,
+        port: 8001,
         suffix: 'api'
     },
 

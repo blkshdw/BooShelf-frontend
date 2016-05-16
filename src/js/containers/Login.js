@@ -35,6 +35,7 @@ export default class Login extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
+        console.log(nextProps.user);
         if (nextProps.user) {
             this.props.replaceState(null, this.props.nextPathname);
         }

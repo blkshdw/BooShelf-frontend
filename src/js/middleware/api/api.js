@@ -12,7 +12,8 @@ const X_USER_DEVICE_HEADER = 'web';
 const request = (acceptedType, token) => new Request({
     path: `${config.api.host}:${config.api.port}`,
     headers: {
-        'Accept': acceptedType
+        'Accept': acceptedType,
+        'Token': token
     }
 });
 
@@ -82,10 +83,7 @@ export default store => next => action => {
         acceptedType = 'application/json';
     }
 
-
-    const user = currentUserSelector(store.getState());
-
-    let token = user ? user.token : '';
+    let {status: { auth: { token }} } =  store.getState();
 
     if (typeof method !== 'string') {
         throw new Error('Specify a string method type.');
@@ -115,7 +113,7 @@ export default store => next => action => {
     const [ requestType, successType, failureType ] = types;
     next(actionWith({ type: requestType }));
 
-    return callApi(method, endpoint, data, query, schema, acceptedType).then(
+    return callApi(method, endpoint, data, query, schema, acceptedType, token).then(
         response => next(actionWith({
             payload: response,
             type: successType
