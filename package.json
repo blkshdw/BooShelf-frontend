@@ -74,6 +74,7 @@
     "express": "^4.13.3",
     "css-loader": "0.20.2",
     "draft-js": "^0.5.0",
+    "copy-webpack-plugin": "^0.2.0",
     "draft-js-emoji-plugin": "^1.0.1",
     "draft-js-hashtag-plugin": "^1.0.0",
     "draft-js-plugins-editor": "^1.0.0",
