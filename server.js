@@ -23,7 +23,7 @@ app.get('*', (req, res) => {
     res.end(index);
 });
 
-app.listen(PORT, HOST, err => {
+app.listen(PORT, err => {
     if (err) {
         console.log(err); // eslint-disable-line no-console
         return;
