@@ -44,21 +44,26 @@ export default function(state = initialState, action) {
             isCheckAuthLoading: true
         };
 
-    case REGISTRATION_SUCCESS:
     case CHECK_AUTH_SUCCESS:
-        window.localStorage.setItem('token', payload.token);
         return {
             ...initialState,
-            user: payload.id,
-            token: payload.token
+            user: payload.result,
+        };
+
+        case REGISTRATION_SUCCESS:
+        window.localStorage.setItem('token', payload.entities.users[payload.result].token);
+        return {
+            ...initialState,
+            user: payload.result,
+            token: payload.entities.users[payload.result].token
         };
 
     case LOGIN_SUCCESS:
-        window.localStorage.setItem('token', payload.token);
+        window.localStorage.setItem('token', payload.entities.users[payload.result].token);
         return {
             ...initialState,
-            user: payload.id,
-            token: payload.token
+            user: payload.result,
+            token:  payload.entities.users[payload.result].token
         };
 
     case REGISTRATION_ERROR:

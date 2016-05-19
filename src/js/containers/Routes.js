@@ -39,7 +39,7 @@ export default (
         </Route>
         <Route component={AuthenticatedApp} onEnter={requireAuth} ignoreScrollBehavior>
             <Route component={Main}>
-                <Route path="me" />
+                <Route path="me" components={{ content: MeContent}} />
                 <Route path="books" components={{ content: BooksContent }} />
                 <Route path="books/:bookId" components={{ content: BookCardContent }} />
                 <Route path="users" components={{ content: UsersListContent }} />
