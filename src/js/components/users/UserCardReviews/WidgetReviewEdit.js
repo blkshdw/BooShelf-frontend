@@ -48,12 +48,14 @@ export default class WidgetUserEdit extends Component {
                                 Rating
                             </Col>
                             <Col sm={10}>
+                                <div style={{"width": "250px"}}>
                                 <StarRating
                                     name="rating"
                                     rating={this.state.rating}
                                     editing
                                     onRatingClick={(event, rating) => {this.setState({rating: rating.rating})}}
                                 />
+                                    </div>
                             </Col>
                         </FormGroup>
 

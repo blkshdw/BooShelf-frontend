@@ -42,9 +42,9 @@ export default class MyReviews extends Component {
     }
 
     render() {
-        const { reviews, books, deleteReview } = this.props;
+        const { reviews, books, deleteReview, updateReview } = this.props;
         return (<div className="box-col">
-            <UserCardReviews reviews={reviews} books={books} deleteReview={deleteReview} editable/>
+            <UserCardReviews reviews={reviews} books={books} deleteReview={deleteReview} updateReview={updateReview} editable/>
         </div>)
     }
 }

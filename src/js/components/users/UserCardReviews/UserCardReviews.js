@@ -39,6 +39,11 @@ export default class UserCardReviews extends Component {
                     <WidgetReviewEdit
                     title={currentEditReview.title}
                     content={currentEditReview.content}
+                    updateReview={(values) => {
+                        this.props.updateReview(currentEditReview.id, values);
+                        this.closeDialogs();
+                    }
+                    }
                     rating={currentEditReview.rating}
                     bookTitle={books[currentEditReview.bookId] ? books[currentEditReview.bookId].title || currentEditReview.id : currentEditReview.id}
                     active={currentEditReview ? true : false}

@@ -32,7 +32,7 @@ export default class UserCardHeader extends Component {
                             toggleCreateUserDialog={::this.toggleUpdateUserDialog}
                         /></h2>
                         <div className={cx('birthday')} >
-                            {user.birthdayDate ? moment().diff(user.birthdayDate, 'years' + "years old")  : 'Birth date not stated'}
+                            {user.birthdayDate ? moment().diff(user.birthdayDate, 'years') + " years old"  : 'Birth date not stated'}
                         </div>
                         <div className={cx('about')} >
                             {user.about}
