@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { Panel, Button, ButtonToolbar, Well } from 'react-bootstrap';
-import deleteModal from 'components/deleteModal';
+import DeleteModal from 'components/DeleteModal';
 import StarRating from 'react-star-rating';
 import WidgetReviewEdit from './WidgetReviewEdit';
 import cx from './UserCardReviews.styl';
@@ -48,7 +48,7 @@ export default class UserCardReviews extends Component {
 
             {
                 currentDeleteReview ?
-                    <deleteModal
+                    <DeleteModal
                         object={(books[currentDeleteReview.bookId] ? books[currentDeleteReview.bookId].title || currentDeleteReview.id : currentDeleteReview.id) + " review"}
                         active={currentDeleteReview ? true : false}
                         onDelete={() => {
