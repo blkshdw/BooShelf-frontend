@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-import { Navbar, NavItem, Nav, Glyphicon } from 'react-bootstrap';
-import cx from './NavigationTop.scss';
+import { Navbar, NavItem, Nav, Glyphicon, FormGroup, FormControl, Button } from 'react-bootstrap';
+import cx from './NavigationTop.styl';
 
 export default class NavigationTop extends Component {
     static propTypes = {
@@ -19,7 +19,7 @@ export default class NavigationTop extends Component {
 
         return (
             <Navbar
-                inverse
+                
                 fluid
                 staticTop
                 className={cx('navigation-top')}
@@ -40,7 +40,7 @@ export default class NavigationTop extends Component {
                         }
                     </Navbar.Toggle>
                 </Nav>
-                <Navbar.Collapse>
+                <Navbar.Collapse pullRight>
                     <Nav pullRight onSelect={path => {path && pushState(null, path)}}>
                         <NavItem >{user.name}</NavItem>
                         <NavItem eventKey="/logout">Logout</NavItem>

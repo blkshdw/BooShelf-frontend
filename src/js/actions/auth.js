@@ -12,6 +12,10 @@ import {
     CHECK_AUTH_SUCCESS,
     CHECK_AUTH_ERROR,
 
+    UPDATE_PROFILE,
+    UPDATE_PROFILE_SUCCESS,
+    UPDATE_PROFILE_ERROR,
+
     UPDATE_CONNECTION_STATUS,
 
     LOGOUT,
@@ -71,15 +75,22 @@ export function checkAuth() {
 
 export function logoutSubmit(values) {
     return {
+        type: LOGOUT_SUCCESS,
+        meta: { values }
+    };
+}
+
+export function updateProfile(values) {
+    return {
         [CALL_API]: {
             types: [
-                LOGOUT,
-                LOGOUT_SUCCESS,
-                LOGOUT_ERROR
+                UPDATE_PROFILE,
+                UPDATE_PROFILE_SUCCESS,
+                UPDATE_PROFILE_ERROR
             ],
-            method: 'GET',
-            endpoint: '/logout',
-            query: values,
+            method: 'PUT',
+            endpoint: '/me',
+            data: values,
             schema: Schemas.USER
         },
         meta: { values }

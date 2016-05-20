@@ -42,7 +42,7 @@ export default class Login extends Component {
     }
 
     render() {
-        const { registrationSubmit, loginSubmit, isLoginLoading, isCheckAuthLoading, errors } = this.props;
+        const { registrationSubmit, loginSubmit, isLoginLoading, isCheckAuthLoading, errors, error } = this.props;
 
         if (isCheckAuthLoading) {
             return (<Loader />);
@@ -54,6 +54,7 @@ export default class Login extends Component {
                 onRegistration={registrationSubmit}
                 inProgress={isLoginLoading}
                 errors={errors}
+                error={error}
             />
         );
     }

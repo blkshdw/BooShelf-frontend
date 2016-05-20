@@ -1,7 +1,8 @@
 import React, { PropTypes, Component } from 'react';
 import InputField from './../InputField';
 import ButtonRadio from './../ButtonRadio';
-import CheckboxField from 'components/CheckboxField'
+import CheckboxField from 'components/CheckboxField';
+import { FormGroup, ControlLabel, FormControl, HelpBlock, Button } from 'react-bootstrap';
 import { injectIntl, intlShape } from 'react-intl';
 import cx from './LoginForm.styl';
 
@@ -12,21 +13,37 @@ export default class LoginForm extends Component {
         inProgress: PropTypes.bool,
         onLogin: PropTypes.func,
         onRegistration: PropTypes.func,
-        errors: PropTypes.array
+        error: PropTypes.string
     };
 
     static defaultProps = {
         onLogin: () => {},
         inProgress: false,
-        errors: []
+        error: ''
     };
 
     state = {
-        isRegistration: false
+        isRegistration: false,
+        username: '',
+        password: ''
+    }
+
+    getValidationEmail() {
+        const length = this.state.username.length;
+        if (length > 6) return 'success';
+        else if (length > 3) return 'warning';
+        else if (length > 0) return 'error';
+    }
+
+    getValidationPassword() {
+        const length = this.state.password.length;
+        if (length > 9) return 'success';
+        else if (length > 7) return 'warning';
+        else if (length > 0) return 'error';
     }
 
     render() {
-        const { intl, inProgress, errors } = this.props;
+        const { intl, inProgress, error } = this.props;
         const { isRegistration } = this.state;
 
         const sInfoAreaClasses = cx({'info-area': inProgress}, 'box-col');
@@ -35,17 +52,67 @@ export default class LoginForm extends Component {
             <div className={cx('box-row align-middle', 'login-form')} onKeyDown={this.handleOnEnter}>
                 <div className={cx('box-col', 'login-bx')}>
                     <div className={sInfoAreaClasses}>
-                        {isRegistration ?
-                            <div>
-                                <InputField id="login" className={cx('content')} ref="username" placeholder="Username" disabled={inProgress} />
-                                <InputField id="pswd" className={cx('content')} ref="password" placeholder="Password" type="password" disabled={inProgress} />
-                            </div> :
-                            <div>
-                                <InputField id="usrnm" className={cx('content')} ref="login" placeholder="Username or Email" disabled={inProgress} />
-                                <InputField id="pass" className={cx('content')} ref="password" placeholder="Password" type="password" disabled={inProgress} />
-                            </div>
+                        {!isRegistration ?
+                            <form>
+                                <FormGroup
+                                    controlId="formBasicText"
+                                >
+                                    <ControlLabel>Username or email</ControlLabel>
+                                    <FormControl
+                                        type="text"
+                                        placeholder="Username or email"
+                                        value={this.state.username}
+                                        placeholder="Enter text"
+                                        onChange={(e) => this.setState({username: e.target.value})}
+                                    />
+                                    <FormControl.Feedback />
+                                    <HelpBlock>{error}</HelpBlock>
+                                </FormGroup>
+                                <FormGroup
+                                    controlId="formBasicText"
+                                >
+                                    <ControlLabel>Password</ControlLabel>
+                                    <FormControl
+                                        type="text"
+                                        value={this.state.password}
+                                        placeholder="Password"
+                                        onChange={(e) => this.setState({password: e.target.value})}
+                                    />
+                                    <FormControl.Feedback />
+                                </FormGroup>
+                            </form> :
+                            <form>
+                                <FormGroup
+                                    controlId="formBasicText"
+                                    validationState={this.getValidationEmail()}
+                                >
+                                    <ControlLabel>Username or email</ControlLabel>
+                                    <FormControl
+                                        type="text"
+                                        value={this.state.username}
+                                        placeholder="Enter text"
+                                        onChange={(e) => this.setState({username: e.target.value})}
+                                    />
+                                    <FormControl.Feedback />
+                                    <HelpBlock>Username should be at least 4 character long.</HelpBlock>
+                                </FormGroup>
+                                <FormGroup
+                                    controlId="formBasicText"
+                                    validationState={this.getValidationPassword()}
+                                >
+                                    <ControlLabel>Password</ControlLabel>
+                                    <FormControl
+                                        type="text"
+                                        value={this.state.password}
+                                        placeholder="Password"
+                                        onChange={(e) => this.setState({password: e.target.value})}
+                                    />
+                                    <FormControl.Feedback />
+                                    <HelpBlock>Password should be at least 8 character long</HelpBlock>
+                                </FormGroup>
+                            </form>
                         }
-                        {errors && errors.map((error, idx) => (<div className={cx('error')} key={idx}>{intl.formatMessage({id: error.message}) || error.message}</div>))}
+                        <div className={cx('error')}>{error}</div>
                         <div className={cx('box-row align-right nowrap', 'content')}>
                             {
                             <CheckboxField
@@ -55,11 +122,9 @@ export default class LoginForm extends Component {
                                 onClick={this.handleRegistrationChange}
                             />
                             }
-                            <ButtonRadio
-                                className={cx('button')}
-                                name={intl.formatMessage({ id: isRegistration ? 'profileRegisterAndAuthReg' : 'connectAuthorization' })}
-                                onClick={isRegistration ? this.handleRegistrationSubmit : this.handleLoginSubmit}
-                            />
+                            <Button onClick={isRegistration ? this.handleRegistrationSubmit : this.handleLoginSubmit}>
+                                {intl.formatMessage({ id: isRegistration ? 'profileRegisterAndAuthReg' : 'connectAuthorization' })}
+                            </Button>
                         </div>
                     </div>
                 </div>
@@ -74,18 +139,18 @@ export default class LoginForm extends Component {
     }
 
     handleLoginSubmit = () => {
-        const { login, password } = this.refs;
+        const { username, password } = this.state;
         this.props.onLogin({
-            username: login.value,
-            password: password.value
+            username: username,
+            password: password
         });
     }
 
     handleRegistrationSubmit = () => {
-        const { username, password } = this.refs;
+        const { username, password } = this.state;
         this.props.onRegistration({
-            username: username.value,
-            password: password.value
+            username: username,
+            password: password
         });
     }
 

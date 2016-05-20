@@ -4,71 +4,25 @@ const userSchema = new Schema('users', {
     idAttribute: 'id'
 });
 
-const peerSchema = new Schema('peers', {
+const reviewSchema = new Schema('reviews', {
     idAttribute: 'id'
 });
 
-const channelSchema = new Schema('channels', {
+const bookSchema = new Schema('books', {
     idAttribute: 'id',
 });
 
-const ticketMessageSchema = new Schema('ticketsMessages', {
+const trackingSchema = new Schema('trackings', {
     idAttribute: 'id',
-});
-
-ticketMessageSchema.define({
-    from: peerSchema
-});
-
-const ticketSchema = new Schema('tickets', {
-    idAttribute: 'id',
-});
-ticketSchema.define({
-    messages: arrayOf(ticketMessageSchema),
-    chat: peerSchema
 });
 
 export default {
     USER: userSchema,
-    PEER: peerSchema,
+    BOOK: bookSchema,
+    BOOK_ARRAY: arrayOf(bookSchema),
     USER_ARRAY: arrayOf(userSchema),
-    CHANNEL: channelSchema,
-    CHANNEL_ARRAY: arrayOf(channelSchema),
-    TICKET: ticketSchema,
-    TICKET_ARRAY: arrayOf(ticketSchema),
-    TICKETMESSAGE: (ticketMessageSchema)
+    TRACKING: trackingSchema,
+    TRACKING_ARRAY: arrayOf(trackingSchema),
+    REVIEW: reviewSchema,
+    REVIEW_ARRAY: arrayOf(reviewSchema)
 };
-
-
-
-const wsMessage = new Schema('wsMessage');
-wsMessage.define({
-    message: ticketMessageSchema
-});
-
-const wsChannel = new Schema('wsChannel');
-wsChannel.define({
-    channel: channelSchema
-});
-
-const wsUser = new Schema('wsUser');
-wsUser.define({
-    user: userSchema
-});
-
-const wsTicket = new Schema('wsTicket');
-wsTicket.define({
-    ticket: ticketSchema
-});
-
-export const wsSchemas = {
-    'message.sending': wsMessage,
-    'message.sent': wsMessage,
-    'message.received': wsMessage,
-
-    'user.created': wsUser,
-    'user.deleted': wsUser,
-
-    'ticket.assigned': wsTicket,
-    'ticket.received': wsTicket
-}

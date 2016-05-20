@@ -5,7 +5,6 @@ import { fetchInitialDataIfNeeded, fetchTicketsCount } from 'actions';
 import { authenticatedAppSelector } from 'selectors';
 import Loader from 'components/Loader';
 import cx from './AuthenticatedApp.styl';
-
 @connect(authenticatedAppSelector)
 export default class AuthenticatedApp extends Component {
     static propTypes = {

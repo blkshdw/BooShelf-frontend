@@ -9,15 +9,18 @@
   transition: width 0.5s;
   .content {
     .nav-but {
-      flex: 0 1 auto;
+      margin-top: 20px;
+      flex: 1 auto;
+      flex-direction: column;
+      justify-content: space-between;
       .icon {
-        padding-right: 5px;
+        margin-top: 10px;
       }
     }
   }
 
   &.active {
-    width: 240px;
+    width: 100px;
   }
 }
 

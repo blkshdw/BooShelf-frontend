@@ -62,10 +62,10 @@ export default class Request {
                                 response.json().then(resolve);
                         }
                     } else {
-                        response.json().then(error => reject(error.message));
+                        response.json().then(error => reject(error.error || error.errors));
                     }
                 })
-                .catch(error => reject(error.message));
+                .catch(error => reject(error.error || error.errors));
         });
     }
 }

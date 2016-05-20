@@ -7,7 +7,7 @@ const app = express();
 const compiler = webpack(config);
 
 const HOST = process.env.HOST || 'localhost';
-const PORT = process.env.PORT || 8090;
+const PORT = process.env.PORT || 8095;
 
 const hot = require('webpack-hot-middleware')(compiler);
 const dev = require('webpack-dev-middleware')(compiler, {

@@ -9,7 +9,7 @@ import AnonymousApp from './AnonymousApp';
 import AuthenticatedApp from './AuthenticatedApp';
 import NotFound from 'components/NotFound';
 import { UserCardBooksContent, UserCardContent, UsersListContent } from './users';
-import { MeContent, MyBooks } from './me';
+import { MeContent, MyBooks, MyReviews } from './me';
 import { BookCardContent, BooksContent } from './books';
 
 
@@ -39,7 +39,11 @@ export default (
         </Route>
         <Route component={AuthenticatedApp} onEnter={requireAuth} ignoreScrollBehavior>
             <Route component={Main}>
-                <Route path="me" components={{ content: MeContent}} />
+                <Redirect from="me" to="/me/reviews"/>
+                <Route path="me" components={{ content: MeContent}} >
+                    <Route path="reviews" component={MyReviews} />
+                    <Route path="books/:bookType" component={MyBooks} />
+                </Route>
                 <Route path="books" components={{ content: BooksContent }} />
                 <Route path="books/:bookId" components={{ content: BookCardContent }} />
                 <Route path="users" components={{ content: UsersListContent }} />

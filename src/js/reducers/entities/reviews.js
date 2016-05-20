@@ -1,7 +1,7 @@
 // import merge from 'lodash/object/merge';
 import {
     LOGOUT_SUCCESS,
-    REMOVE_REVIEW_SUCCESS
+    REMOVE_REVIEW_SUCCESS,
 
 } from 'constants';
 import { omit } from 'lodash';

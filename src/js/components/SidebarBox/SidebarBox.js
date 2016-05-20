@@ -26,7 +26,7 @@ export default class SidebarBox extends Component {
                     <ButtonPrimary
                         to="/me"
                         className={cx('no-decoration vertical-align', 'nav-but')}>
-                        <Glyphicon className={cx('icon')} glyph="user"/>
+                        <Glyphicon className={cx('icon')} glyph="heart"/>
                         My Shelf
                     </ButtonPrimary>
                     <ButtonPrimary
@@ -38,7 +38,7 @@ export default class SidebarBox extends Component {
                     <ButtonPrimary
                         to="/books"
                             className={cx('no-decoration vertical-align', 'nav-but')}>
-                            <Glyphicon className={cx('icon')} glyph="stats"/>
+                            <Glyphicon className={cx('icon')} glyph="book"/>
                             Books
                     </ButtonPrimary>
                     </nav>

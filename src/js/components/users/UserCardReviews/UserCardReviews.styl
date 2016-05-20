@@ -1,0 +1,41 @@
+:local .user-reviews {
+
+}
+
+:local .title-panel {
+  display: flex;
+  justify-content: space-between;
+  .title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: normal;
+    width: 75%;
+    padding-top: 8px;
+  }
+}
+
+.reviews-list {
+  overflow: scroll;
+}
+  :local .panel {
+    width: 98%;
+  }
+
+  :local .rating {
+    padding-bottom: 0px;
+  }
+    :local .review-name {
+      display: flex;
+      flex-direction: row;
+      font-style: italic;
+      font-weight: bold;
+      justify-content: space-between;
+    }
+      :local .name {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        line-height: normal;
+        width: 75%;
+      }

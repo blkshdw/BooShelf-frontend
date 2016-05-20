@@ -27,7 +27,7 @@ const initialState = {
 
 export default function(state = initialState, action) {
 
-    const { type, payload, errors } = action;
+    const { type, payload, errors, error } = action;
 
     switch (type) {
 
@@ -71,7 +71,8 @@ export default function(state = initialState, action) {
     case LOGOUT_ERROR:
         return {
             ...initialState,
-            errors: errors
+            errors: errors,
+            error: error
         };
 
     case CHECK_AUTH_ERROR:
@@ -81,8 +82,11 @@ export default function(state = initialState, action) {
         };
 
         case LOGOUT_SUCCESS:
+            window.localStorage.removeItem('token');
         return {
-            ...initialState
+            ...initialState,
+            token: null,
+            user: null
         };
 
     default:
