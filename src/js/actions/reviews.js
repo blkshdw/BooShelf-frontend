@@ -16,9 +16,9 @@ import {
     CREATE_REVIEW_SUCCESS,
     CREATE_REVIEW_ERROR,
 
-    DELETE_REVIEW,
-    DELETE_REVIEW_SUCCESS,
-    DELETE_REVIEW_ERROR
+    REMOVE_REVIEW,
+    REMOVE_REVIEW_SUCCESS,
+    REMOVE_REVIEW_ERROR
 }  from 'constants';
 
 
@@ -128,9 +128,9 @@ export function deleteReview(reviewId) {
     return {
         [CALL_API]: {
             types: [
-                DELETE_REVIEW,
-                DELETE_REVIEW_SUCCESS,
-                DELETE_REVIEW_ERROR
+                REMOVE_REVIEW,
+                REMOVE_REVIEW_SUCCESS,
+                REMOVE_REVIEW_ERROR
             ],
             method: 'DELETE',
             endpoint: '/reviews/' + reviewId

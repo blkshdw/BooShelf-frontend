@@ -13,10 +13,9 @@ export default class BooksHeader extends Component {
     }
 
     render() {
-        const { users, userId, filterByUser, filterPeriodFrom, filterPeriodTo, filterRange, user, timeRange } = this.props;
-        const timeRanges = [TIME_RANGES.day, TIME_RANGES.week, TIME_RANGES.month]
+        const { users, userId, filterByAuthor, filterByGenre, filterByName } = this.props;
         return (
-            <div className={cx('statistics-header')}>
+            <div className={cx('books-header')}>
                 <span className={cx('statistics-header-title')}>Filters</span>
                 <ButtonToolbar className={cx('statistics-header-filters-left')}>
                     <ButtonGroup className={cx('buttons-left')}>
@@ -39,13 +38,13 @@ export default class BooksHeader extends Component {
                         bsSize="small"
                         title={user ? user.name || user._id : 'All'}
                     >
-                        <MenuItem onClick={() => this.props.filterByUser('')} active={!userId}>All</MenuItem>
-                        {users.map(user => (
+                        <MenuItem onClick={() => this.props.filterByGenre('')} active={!currentGenre}>All</MenuItem>
+                        {genres.map(user => (
                             <MenuItem
-                                onClick={() => this.props.filterByUser(user._id)}
-                                active={user._id === userId}
+                                onClick={() => this.props.filterByGenre(genre)}
+                                active={genre === currentGenre}
                             >
-                                {user.name}
+                                {genre}
                             </MenuItem>
                         ))}
                     </DropdownButton>

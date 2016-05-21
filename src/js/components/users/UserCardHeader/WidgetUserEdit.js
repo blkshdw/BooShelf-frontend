@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {Modal, FormControl, FormGroup, ControlLabel, Form, Button, Col} from 'react-bootstrap';
 import DateTimeField from 'react-bootstrap-datetimepicker';
+import moment from 'moment';
 import cx from './WidgetUserEdit.styl';
 
 export default class WidgetUserEdit extends Component {
@@ -21,7 +22,11 @@ export default class WidgetUserEdit extends Component {
 
     render() {
         const {active, toggleCreateUserDialog} = this.props;
-
+        const dateProps = this.state.birthdayDate ? {
+            dateTime: this.state.birthdayDate
+        } : {
+            defaultText: "Birthday"
+        }
         return (
             <Modal show={active} onHide={toggleCreateUserDialog}>
                 <Modal.Header closeButton>
@@ -62,7 +67,7 @@ export default class WidgetUserEdit extends Component {
                                 Birthday date
                             </Col>
                             <Col sm={10}>
-                                <DateTimeField defaultText="Birthday" onChange={date => this.setState({birthdayDate: date})} mode="date" />
+                                <DateTimeField dateTime={this.state.birthdayDate} {...dateProps} onChange={date => this.setState({birthdayDate: date})} mode="date" />
                             </Col>
                         </FormGroup>
                     </Form>
@@ -87,7 +92,18 @@ export default class WidgetUserEdit extends Component {
     }
 
     handleUpdateUser() {
-        this.props.updateUser(this.state);
+        const query = {
+            fullName: this.state.fullName,
+            about: this.state.about
+        }
+        if(this.state.birthdayDate !== "Invalid date" && this.state.birthdayDate) {
+            query.birthdayDate = this.state.birthdayDate;
+        } else {
+            this.setState({
+                birthdayDate: this.props.birthdayDate
+            })
+        }
+        this.props.updateUser(query);
         return this.props.toggleCreateUserDialog();
     }
 
