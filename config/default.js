@@ -2,7 +2,6 @@ module.exports = {
 
 
     api: {
-        host: 'http://server.booshelf.ru',
-        port: 80
+        host: 'https://server.booshelf.ru'
     }
 }

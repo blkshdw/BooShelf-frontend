@@ -3,20 +3,44 @@ import {
     FETCH_USERS_SUCCESS,
     FETCH_USERS_ERROR,
 
-    LOGOUT_SUCCESS
+    LOGOUT_SUCCESS,
+
+    UPDATE_PROFILE,
+    UPDATE_PROFILE_SUCCESS,
+    UPDATE_PROFILE_ERROR
 } from 'constants';
 
 
 const initialState = {
     isFetching: false,
-    error: null,
+    isUpdating: false,
+    error: ''
 };
 
 export default function(state = initialState, action) {
 
-    const { type, payload } = action;
+    const { type, payload, error } = action;
 
     switch (type) {
+
+        case UPDATE_PROFILE:
+            return {
+                ...state,
+                isUpdating: true
+            }
+
+        case UPDATE_PROFILE_SUCCESS:
+            return {
+                ...state,
+                isUpdating: false
+            }
+
+        case UPDATE_PROFILE_ERROR:
+            return {
+                ...state,
+                isUpdating: false,
+                error: error
+            }
 
     case FETCH_USERS:
         return {

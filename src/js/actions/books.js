@@ -14,7 +14,13 @@ import {
 
     CREATE_BOOK,
     CREATE_BOOK_SUCCESS,
-    CREATE_BOOK_ERROR
+    CREATE_BOOK_ERROR,
+
+    BOOKS_FILTER_TITLE,
+    BOOKS_FILTER_GENRE,
+    BOOKS_FILTER_AUTHOR,
+    BOOKS_CLEAR_FILTERS
+
 }  from 'constants';
 
 
@@ -100,4 +106,31 @@ export function fetchMyBooks() {
         },
         meta: { values }
     };
+}
+
+export function booksFilterTitle(title) {
+    return {
+        type: BOOKS_FILTER_TITLE,
+        payload: title
+    }
+}
+
+export function booksFilterGenre(genre) {
+    return {
+        type: BOOKS_FILTER_GENRE,
+        payload: genre
+    }
+}
+
+export function booksFilterAuthor(author) {
+    return {
+        type: BOOKS_FILTER_AUTHOR,
+        payload: author
+    }
+}
+
+export function booksClearFilters() {
+    return {
+        type:  BOOKS_CLEAR_FILTERS
+    }
 }

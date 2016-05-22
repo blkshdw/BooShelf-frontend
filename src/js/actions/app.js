@@ -1,4 +1,5 @@
 import { fetchUsers } from './users';
+import { fetchMyTrackings } from './trackings';
 import { appIsReady } from 'selectors';
 import {
     FETCH_INITIAL_DATA,
@@ -9,6 +10,27 @@ import {
 
     CHANGE_LOCALE
 } from 'constants';
+
+export function fetchInitialData() {
+    return {
+        types: [
+            FETCH_INITIAL_DATA,
+            FETCH_INITIAL_DATA_SUCCESS,
+            FETCH_INITIAL_DATA_ERROR
+        ],
+        payload: [
+            fetchMyTrackings  // for people section
+        ]
+    };
+}
+
+export function fetchInitialDataIfNeeded() {
+    return (dispatch, getState) => {
+        if (!appIsReady(getState())) {
+            return dispatch(fetchInitialData());
+        }
+    };
+}
 
 export function toggleLeftPanel() {
     return {

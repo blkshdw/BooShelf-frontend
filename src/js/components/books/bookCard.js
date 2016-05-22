@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-export default class bookCard extends Component {
+export default class BookCard extends Component {
     render() {
         return <div>
             

@@ -1,2 +1,4 @@
-import bookCard from './bookCard';
-import booksList from './booksList';
+export BookCard from './BookCard';
+export BooksList from './BooksList';
+export BooksHeader from './BooksHeader';
+export BookCardHeader from './BookCardHeader';

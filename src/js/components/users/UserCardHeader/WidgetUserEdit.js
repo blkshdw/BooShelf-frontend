@@ -8,7 +8,9 @@ export default class WidgetUserEdit extends Component {
     static propTypes = {
         updateUser: PropTypes.func,
         toggleCreateUserDialog: PropTypes.func,
-        active: PropTypes.bool
+        active: PropTypes.bool,
+        isUpdating: PropTypes.bool,
+
     };
 
     constructor(props) {
@@ -20,8 +22,14 @@ export default class WidgetUserEdit extends Component {
         }
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.active && !nextProps.isUpdating && !nextProps.error) {
+            this.props.toggleCreateUserDialog();
+        }
+    }
+
     render() {
-        const {active, toggleCreateUserDialog} = this.props;
+        const {active, toggleCreateUserDialog, isUpdating, error} = this.props;
         const dateProps = this.state.birthdayDate ? {
             dateTime: this.state.birthdayDate
         } : {
@@ -32,6 +40,7 @@ export default class WidgetUserEdit extends Component {
                 <Modal.Header closeButton>
                     <Modal.Title>Update profile</Modal.Title>
                 </Modal.Header>
+                {error && <div style={{"color": "red", "marginLeft": "160px", "marginTop": "5px"}}>Error: {error}</div> }
                 <Modal.Body>
                     <Form horizontal>
                         <FormGroup controlId="formHorizontalName">
@@ -74,8 +83,8 @@ export default class WidgetUserEdit extends Component {
                 </Modal.Body>
 
                 <Modal.Footer>
-                    <Button onClick={toggleCreateUserDialog}>Cancel</Button>
-                    <Button bsStyle="primary" onClick={::this.handleUpdateUser}>Update user</Button>
+                    <Button onClick={toggleCreateUserDialog} disabled={isUpdating}>Cancel</Button>
+                    <Button bsStyle="primary" onClick={::this.handleUpdateUser} disabled={isUpdating}>Update user</Button>
                 </Modal.Footer>
             </Modal>
         );
@@ -104,7 +113,6 @@ export default class WidgetUserEdit extends Component {
             })
         }
         this.props.updateUser(query);
-        return this.props.toggleCreateUserDialog();
     }
 
 }

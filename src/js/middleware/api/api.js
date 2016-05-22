@@ -10,7 +10,7 @@ export const CALL_API = Symbol('Call API');
 const X_USER_DEVICE_HEADER = 'web';
 
 const request = (acceptedType, token) => new Request({
-    path: `${config.api.host}:${config.api.port}`,
+    path: `${config.api.host}`,
     headers: {
         'Accept': acceptedType,
         'Token': token

@@ -13,7 +13,8 @@ import {
 
     LOGOUT,
     LOGOUT_SUCCESS,
-    LOGOUT_ERROR
+    LOGOUT_ERROR,
+
 } from 'constants';
 
 const initialState = {
@@ -21,6 +22,7 @@ const initialState = {
     token: window.localStorage.getItem('token'),
     isLoginLoading: false,
     isCheckAuthLoading: false,
+    isUpdating: false,
     checkAuthError: '',
     errors: []
 };
@@ -55,7 +57,8 @@ export default function(state = initialState, action) {
         return {
             ...initialState,
             user: payload.result,
-            token: payload.entities.users[payload.result].token
+            token: payload.entities.users[payload.result].token,
+            error: ''
         };
 
     case LOGIN_SUCCESS:
@@ -63,7 +66,8 @@ export default function(state = initialState, action) {
         return {
             ...initialState,
             user: payload.result,
-            token:  payload.entities.users[payload.result].token
+            token:  payload.entities.users[payload.result].token,
+            error: ''
         };
 
     case REGISTRATION_ERROR:

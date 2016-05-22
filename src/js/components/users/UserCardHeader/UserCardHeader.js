@@ -18,19 +18,22 @@ export default class UserCardHeader extends Component {
     }
 
     render() {
-        const {user, updateUser, editable} = this.props;
+        const {user, updateUser, editable, isUpdating, error} = this.props;
 
         return (
             <div className={cx('usercard-header', 'box-row')}>
                     <div className="">
-                        <h2 className="">{user.fullName || user.username} {editable && <Button className={cx('edit-button')} onClick={::this.toggleUpdateUserDialog} >Edit</Button>}<WidgetUserEdit
+                        <h2 className="">{user.fullName || user.username} {editable && <Button className={cx('edit-button')} onClick={::this.toggleUpdateUserDialog} >Edit</Button>}
+                            {this.state.updateUserDialogActive ? <WidgetUserEdit
                             active={this.state.updateUserDialogActive}
                             updateUser={updateUser}
+                            isUpdating={isUpdating}
+                            error={error}
                             fullName={user.fullName}
                             about={user.about}
                             birthdayDate={user.birthdayDate}
                             toggleCreateUserDialog={::this.toggleUpdateUserDialog}
-                        /></h2>
+                        /> : ''}</h2>
                         <div className={cx('birthday')} >
                             {user.birthdayDate ? moment().diff(user.birthdayDate, 'years') + " years old"  : 'Birth date not stated'}
                         </div>

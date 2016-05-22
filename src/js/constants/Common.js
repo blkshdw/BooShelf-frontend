@@ -21,4 +21,8 @@ export const TIME_RANGES = {
     day: "day",
     month: "month",
     week: "week"
-}
+};
+
+export const genres = [
+    "Romance", "Philosophy", "Detective", "Drama", "Comedy", "Horror", "Documental", "Educational", "Science", "Musical", "Comics", "Manga", "Esoteric", "Poetry"
+]
