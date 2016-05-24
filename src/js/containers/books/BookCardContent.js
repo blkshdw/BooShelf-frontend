@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import cx from './BookCardContent.styl';
+import cx from './bookCardContent.styl';
 import {connect} from 'react-redux';
 import { pushState } from 'redux-router';
 import {bindActionCreators} from 'redux';
