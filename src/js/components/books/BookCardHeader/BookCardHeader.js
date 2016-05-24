@@ -18,7 +18,7 @@ export default class BookCardHeader extends Component {
     }
 
     render() {
-        const {book, updateBook, editable, isUpdating, error, bookId} = this.props;
+        const {book, updateBook, editable, isUpdating, isUpdatingTracking, error, bookId, myTracking, inMyCollection} = this.props;
 
         return (
             <div className={cx('usercard-header', 'box-row')}>
@@ -37,19 +37,25 @@ export default class BookCardHeader extends Component {
                             coverUrl={book.coverUrl}
                             toggleUpdateBookDialog={::this.toggleUpdateBookDialog}
                         /> : ''}</h2>
-                        <div className={cx('about')} >
-                            {book.description}
+                        <div className={cx('added')} >
+                            On the booShelf of <b>{book.popularity}</b> users
                         </div>
-                        <ButtonToolbar className={cx('buttons')}>
-                            <Button bsStyle="primary" onClick={() => this.handleAddTracking(book)}>
-                                <Glyphicon glyph="star" />
-                                To my collection
-                            </Button>
+                        <div className={cx('buttons')}>
+                            {!inMyCollection ?
+                                <Button disabled={isUpdatingTracking} bsStyle="primary" onClick={() => this.handleAddTracking(book)}>
+                                    <Glyphicon glyph="star" />
+                                    To my collection
+                                </Button> :
+                                <Button disabled={isUpdatingTracking} bsStyle="danger" onClick={() => this.handleRemoveTracking(myTracking)}>
+                                    <Glyphicon glyph="remove" />
+                                    Remove from my collection
+                                </Button>
+                            }
                             {editable && <Button bsStyle="warning" className={cx('edit-button')} onClick={::this.toggleUpdateBookDialog} >Edit</Button> }
-                        </ButtonToolbar>
+                        </div>
                         <br />
                     </div>
-                    <div className="col-sm-2"><a className={cx('pull-right', 'author')} >by {book.author}</a>
+                    <div ><a className={cx('pull-right', 'author')} >by {book.author}</a>
                         </div>
             </div>
         );
@@ -61,6 +67,10 @@ export default class BookCardHeader extends Component {
 
     handleUpdateBook(values) {
         this.props.updateBook(this.props.bookId, values);
+    }
+
+    handleRemoveTracking(tracking) {
+        this.props.deleteTracking(tracking)
     }
 
     toggleUpdateBookDialog() {

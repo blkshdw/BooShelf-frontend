@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import DateTimeField from 'react-bootstrap-datetimepicker';
 import {Modal, FormControl, FormGroup, ControlLabel, Form, Button, Col} from 'react-bootstrap';
+import cx from './WidgetEditBook.styl';
 
 const genres = [
     "Romance", "Philosophy", "Detective", "Drama", "Comedy", "Horror", "Documental", "Educational", "Science", "Musical", "Comics", "Manga", "Esoteric", "Poetry"
@@ -25,14 +26,13 @@ export default class WidgetUserDialog extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log(nextProps);
         if (this.props.active && !nextProps.isUpdating && !nextProps.error) {
             return this.props.toggleUpdateBookDialog();
         }
     }
 
     render() {
-        const {active, toggleUpdateBookDialog, isCreating, error, createUser} = this.props;
+        const {active, toggleUpdateBookDialog, isUpdating, error, createUser} = this.props;
 
         const dateProps = this.state.writtenOn ? {
             dateTime: this.state.writtenOn
@@ -103,9 +103,9 @@ export default class WidgetUserDialog extends Component {
                                 Overview
                             </Col>
                             <Col sm={10}>
-                                <FormControl
+                                <textarea
                                     type="text"
-                                    componentClass="textarea"
+                                    className={cx('my-textarea')}
                                     placeholder="Overview"
                                     value={this.state.description}
                                     onChange={this.handleChangeProp('description')}
@@ -125,8 +125,8 @@ export default class WidgetUserDialog extends Component {
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button onClick={toggleUpdateBookDialog} disabled={isCreating}>Cancel</Button>
-                    <Button bsStyle="primary" onClick={::this.handleCreateBook} disabled={isCreating}>Update</Button>
+                    <Button onClick={toggleUpdateBookDialog} disabled={isUpdating}>Cancel</Button>
+                    <Button bsStyle="primary" onClick={::this.handleCreateBook} disabled={isUpdating}>Update</Button>
                 </Modal.Footer>
             </Modal>
         );

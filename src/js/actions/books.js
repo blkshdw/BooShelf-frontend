@@ -64,7 +64,7 @@ export function fetchBook(bookId) {
             types: [
                 FETCH_BOOK,
                 FETCH_BOOK_SUCCESS,
-                FETCH_BOOKS_ERROR
+                FETCH_BOOK_ERROR
             ],
             method: 'GET',
             endpoint: '/books/' + bookId,

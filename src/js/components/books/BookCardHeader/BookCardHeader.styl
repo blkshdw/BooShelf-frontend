@@ -1,28 +1,41 @@
 :local .usercard-header {
   padding: 2rem;
   width: 100%;
-  height: 190px;
+  height: 150px;
+  position: relative;
   border-bottom: 0.125rem solid #E0E0E0;
   justify-content: space-between;
 }
 
   :local .book-title {
-    padding-left: 30px;
     padding-bottom: 5px;
   }
 
+    :local .added {
+      font-size: 13;
+    }
+
   :local .author {
     font-style: italic;
+    height: 40px;
   }
 
   :local .buttons {
     padding-top: 1rem;
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    padding-right: 40px;
     padding-bottom: 1rem;
   }
 
   :local .about {
     font-size: 13;
     max-width: 800px;
+    margin-top: 12px;
+    margin-bottom: 10px;
     line-height: 1;
     max-height: 60px;
     overflow: hidden;

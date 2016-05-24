@@ -48,7 +48,7 @@ export function createReview(values) {
                 CREATE_REVIEW_ERROR
             ],
             method: 'POST',
-            endpoint: '/reviews/',
+            endpoint: '/reviews',
             data: values,
             schema: Schemas.REVIEW
         },
@@ -100,10 +100,9 @@ export function fetchUserReviews(userId) {
             ],
             method: 'GET',
             endpoint: '/users/' + userId + 'reviews',
-            data: values,
             schema: Schemas.REVIEW_ARRAY
         },
-        meta: { values }
+        meta: { userId }
     };
 }
 
@@ -116,15 +115,14 @@ export function fetchBookReviews(bookId) {
                 FETCH_REVIEWS_ERROR
             ],
             method: 'GET',
-            endpoint: '/books/' + bookId + 'reviews',
-            data: values,
+            endpoint: '/books/' + bookId + '/reviews',
             schema: Schemas.REVIEW_ARRAY
         },
-        meta: { values }
+        meta: { bookId }
     };
 }
 
-export function deleteReview(reviewId) {
+export function deleteReview(review) {
     return {
         [CALL_API]: {
             types: [
@@ -133,8 +131,8 @@ export function deleteReview(reviewId) {
                 REMOVE_REVIEW_ERROR
             ],
             method: 'DELETE',
-            endpoint: '/reviews/' + reviewId
+            endpoint: '/reviews/' + review.id
         },
-        meta: { reviewId }
+        meta: { review }
     };
 }

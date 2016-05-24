@@ -62,8 +62,9 @@ export default class WidgetUserEdit extends Component {
                                 About
                             </Col>
                             <Col sm={10}>
-                                <FormControl
+                                <textarea
                                     componentClass="textarea"
+                                    className={cx('my-textarea')}
                                     placeholder="About"
                                     value={this.state.about}
                                     onChange={this.handleChangeProp('about')}

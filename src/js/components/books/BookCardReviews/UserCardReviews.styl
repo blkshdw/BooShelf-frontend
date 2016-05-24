@@ -1,6 +1,11 @@
-:local .user-reviews {
-
+:local .bookcard-reviews {
+  width: 100%;
 }
+
+  :local .right-btn {
+    display: flex;
+    flex-direction: row-reverse;
+  }
 
 :local .title-panel {
   display: flex;
@@ -17,10 +22,19 @@
 
 .reviews-list {
   overflow: scroll;
+  padding: 2rem;
+  width: 80%;
 }
   :local .panel {
     width: 98%;
   }
+
+    :local .review-content {
+      white-space: pre-wrap;
+      font-size: small;
+      max-height: 300px;
+      overflow: scroll;
+    }
 
   :local .rating {
     padding-bottom: 0px;

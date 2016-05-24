@@ -10,6 +10,10 @@ import {
     REMOVE_USER_SUCCESS,
     REMOVE_USER_ERROR,
 
+    FETCH_USER,
+    FETCH_USER_SUCCESS,
+    FETCH_USER_ERROR,
+
     CREATE_USER,
     CREATE_USER_SUCCESS,
     CREATE_USER_ERROR,
@@ -18,24 +22,32 @@ import {
 export function fetchUsers(values) {
     return {
         [CALL_API]: {
+            method: 'GET',
             types: [
                 FETCH_USERS,
                 FETCH_USERS_SUCCESS,
                 FETCH_USERS_ERROR
             ],
-            data: {'query': `
-                query {
-                  result: users {
-                      _id
-                      email
-                      name
-                      role
-                  }
-                }
-            `},
+            endpoint: '/users',
             schema: Schemas.USER_ARRAY
         },
         meta: { values }
+    };
+}
+
+export function fetchUser(userId) {
+    return {
+        [CALL_API]: {
+            types: [
+                FETCH_USER,
+                FETCH_USER_SUCCESS,
+                FETCH_USER_ERROR
+            ],
+            method: 'GET',
+            endpoint: '/users/' + userId,
+            schema: Schemas.USER
+        },
+        meta: { userId }
     };
 }
 
@@ -96,14 +108,5 @@ export function deleteUsers(ids) {
             ],
             payload: ids.map(id => dispatch(deleteUser(id)))
         };
-    };
-}
-
-
-export function fetchUserIfNeeded(id) {
-    return (dispatch, getState) => {
-        if (!entitySelector('users', id)(getState())) {
-            return dispatch(fetchUser(id));
-        }
     };
 }

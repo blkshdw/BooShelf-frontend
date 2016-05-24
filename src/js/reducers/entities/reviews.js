@@ -17,7 +17,7 @@ export default function(state = initialState, action) {
             return initialState;
 
         case REMOVE_REVIEW_SUCCESS:
-            return omit(state, meta.id);
+            return omit(state, meta.review.id);
 
         default:
             return state;

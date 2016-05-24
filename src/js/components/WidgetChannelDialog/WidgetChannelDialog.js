@@ -13,7 +13,8 @@ export default class WidgetChannelDialog extends React.Component {
         type: 'telegram-bot',
         telegramBotValue: {},
         vkValue: {},
-        vkPersonalValue: {}
+        vkPersonalValue: {},
+        instagramValue: {}
     };
 
     render() {
@@ -41,6 +42,7 @@ export default class WidgetChannelDialog extends React.Component {
                         <Tab eventKey="vk-personal" title="Vkontakte personal">
                             {this.renderVkPersonalForm()}
                         </Tab>
+
                     </Tabs>
                 </Modal.Body>
                 <Modal.Footer>
@@ -123,6 +125,57 @@ export default class WidgetChannelDialog extends React.Component {
         );
     }
 
+    renderInstagramForm() {
+        return (
+            <div className={cx('form')}>
+                <Form horizontal>
+                    <FormGroup controlId="formHorizontalName">
+                        <Col componentClass={ControlLabel} sm={2}>
+                            Name
+                        </Col>
+                        <Col sm={10}>
+                            <FormControl
+                                type="text"
+                                placeholder="name"
+                                value={this.state.instagramValue.name}
+                                onChange={this.handleChangeProp('instagramValue', 'name')}
+                            />
+                        </Col>
+                    </FormGroup>
+
+                    <FormGroup controlId="formHorizontalName">
+                        <Col componentClass={ControlLabel} sm={2}>
+                            Username
+                        </Col>
+                        <Col sm={10}>
+                            <FormControl
+                                type="text"
+                                placeholder="username"
+                                value={this.state.instagramValue.username}
+                                onChange={this.handleChangeProp('instagramValue', 'username')}
+                            />
+                        </Col>
+                    </FormGroup>
+
+                    <FormGroup controlId="formHorizontalName">
+                        <Col componentClass={ControlLabel} sm={2}>
+                            Password
+                        </Col>
+                        <Col sm={10}>
+                            <FormControl
+                                type="text"
+                                placeholder="password"
+                                value={this.state.instagramValue.password}
+                                onChange={this.handleChangeProp('instagramValue', 'password')}
+                            />
+                        </Col>
+                    </FormGroup>
+                </Form>
+            </div>
+        );
+    }
+
+
 
     renderVkPersonalForm() {
         return (
@@ -189,6 +242,8 @@ export default class WidgetChannelDialog extends React.Component {
             return this.handleVkCreateChannel();
         case 'vk-personal':
             return this.handleVkPersonalCreateChannel();
+        case 'instagram':
+                return this.handleVkPersonalCreateChannel();
         default:
             throw new Error('Unexpected channel type' + this.state.type);
         }

@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { UserCardReviews } from 'components/users';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import { myReviewsSelector } from 'selectors';
+import { myReviewsContentSelector } from 'selectors';
 import WidgetUserDialog from 'components/WidgetUserDialog';
 import cx from './MeContent.styl';
 import { fetchMyReviews, updateReview, createReview, fetchBook, deleteReview } from 'actions';
@@ -16,7 +16,7 @@ function mapDispatchToProps(dispatch) {
     }, dispatch);
 }
 
-@connect(myReviewsSelector, mapDispatchToProps)
+@connect(myReviewsContentSelector, mapDispatchToProps)
 export default class MyReviews extends Component {
     static PropTypes = {
         reviews: PropTypes.array,
@@ -24,7 +24,8 @@ export default class MyReviews extends Component {
         fetchMyReviews: PropTypes.func,
         updateReview: PropTypes.func,
         fetchingBooks: PropTypes.array,
-        books: PropTypes.object
+        books: PropTypes.object,
+        error: PropTypes.string
     }
 
     componentWillMount() {
@@ -34,8 +35,8 @@ export default class MyReviews extends Component {
     componentWillReceiveProps(nextProps) {
         if (nextProps.reviews !== this.props.reviews) {
             nextProps.reviews.forEach(review => {
-                if (!nextProps.books[review.bookId]) {
-                    this.props.fetchBook(review.bookId)
+                if (!nextProps.books[review.book] && !nextProps.error && (nextProps.fetchingBooks.indexOf(review.book)) < 0) {
+                    this.props.fetchBook(review.book)
                 }
             })
         }

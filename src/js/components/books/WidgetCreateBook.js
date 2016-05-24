@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import DateTimeField from 'react-bootstrap-datetimepicker';
 import {genres } from 'constants/Common';
+import cx from './WidgetCreateBook.styl';
 import {Modal, FormControl, FormGroup, ControlLabel, Form, Button, Col} from 'react-bootstrap';
 
 export default class WidgetUserDialog extends Component {
@@ -19,7 +20,6 @@ export default class WidgetUserDialog extends Component {
     };
 
     componentWillReceiveProps(nextProps) {
-        console.log(nextProps);
         if (this.props.active && !nextProps.isCreating && !nextProps.error) {
             return this.props.toggleCreateBookDialog();
         }
@@ -97,9 +97,9 @@ export default class WidgetUserDialog extends Component {
                                 Overview
                             </Col>
                             <Col sm={10}>
-                                <FormControl
+                                <textarea
                                     type="text"
-                                    componentClass="textarea"
+                                    className={cx('my-textarea')}
                                     placeholder="Overview"
                                     value={this.state.description}
                                     onChange={this.handleChangeProp('description')}

@@ -12,7 +12,7 @@ export default class BooksList extends Component {
         pushState: PropTypes.func,
         createBook: PropTypes.func,
         error: PropTypes.string,
-        isCreating: PropTypes.bool
+        isUpdating: PropTypes.bool
     }
 
     static defaultProps = {
@@ -24,7 +24,7 @@ export default class BooksList extends Component {
     }
 
     render() {
-        const {books, pushState, error, isCreating, createBook } = this.props;
+        const {books, pushState, error, isUpdating, createBook } = this.props;
 
         return(
             <section className={cx('people-content')}>
@@ -36,7 +36,7 @@ export default class BooksList extends Component {
                         <WidgetCreateBook
                             createBook={createBook}
                             genres={genres}
-                            isCreating={isCreating}
+                            isCreating={isUpdating}
                             error={error}
                             active={this.state.createBookDialogActive}
                             toggleCreateBookDialog={::this.toggleCreateBookDialog}

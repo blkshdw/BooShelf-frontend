@@ -17,7 +17,7 @@ export default function(state = initialState, action) {
             return initialState;
 
         case REMOVE_TRACKING_SUCCESS:
-            return omit(state, meta.id);
+            return omit(state, meta.tracking.id);
 
         default:
             return state;

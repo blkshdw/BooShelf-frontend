@@ -1,8 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { Panel, Button, ButtonToolbar, Well } from 'react-bootstrap';
+import Link from 'react-router/lib/Link';
 import DeleteModal from 'components/DeleteModal';
 import StarRating from 'react-star-rating';
-import WidgetReviewEdit from './WidgetReviewEdit';
+import WidgetReviewEdit from './../../WidgetReviewEdit/WidgetReviewEdit';
 import cx from './UserCardReviews.styl';
 
 export default class UserCardReviews extends Component {
@@ -45,7 +46,7 @@ export default class UserCardReviews extends Component {
                     }
                     }
                     rating={currentEditReview.rating}
-                    bookTitle={books[currentEditReview.bookId] ? books[currentEditReview.bookId].title || currentEditReview.id : currentEditReview.id}
+                    bookTitle={books[currentEditReview.book] ? books[currentEditReview.book].title || currentEditReview.id : currentEditReview.id}
                     active={currentEditReview ? true : false}
                     closeDialogs={::this.closeDialogs}
                 /> : ''
@@ -54,10 +55,10 @@ export default class UserCardReviews extends Component {
             {
                 currentDeleteReview ?
                     <DeleteModal
-                        object={(books[currentDeleteReview.bookId] ? books[currentDeleteReview.bookId].title || currentDeleteReview.id : currentDeleteReview.id) + " review"}
+                        object={(books[currentDeleteReview.book] ? books[currentDeleteReview.book].title || currentDeleteReview.id : currentDeleteReview.id) + " review"}
                         active={currentDeleteReview ? true : false}
                         onDelete={() => {
-                            this.props.deleteReview(currentDeleteReview.id);
+                            this.props.deleteReview(currentDeleteReview);
                             this.closeDialogs();
                         }
 
@@ -70,7 +71,7 @@ export default class UserCardReviews extends Component {
             {reviews.map(review => {
                 const header = (
                     <div className={cx('title-panel')}>
-                        <div className={cx('title')} to={'/books' + review.bookId} >{books[review.bookId] ? books[review.bookId].title || review.bookId : review.bookId}</div>
+                        <div className={cx('title')}><Link to={'/books/' + review.book} >{books[review.book] ? books[review.book].title || review.book : review.book}</Link></div>
                         <ButtonToolbar>
                             <Button onClick={() => this.handleEditReview(review)}>Edit</Button>
                             <Button bsStyle="danger" onClick={() => this.handleDeleteReview(review)} >Delete</Button>
@@ -82,7 +83,7 @@ export default class UserCardReviews extends Component {
                     <div className={cx('review-name')}>
                         <div className={cx('name')}>{review.title}</div>
                         <StarRating name="rating-inlist" size={20} disabled editing={false} rating={review.rating}/></div>
-                    {review.content}
+                    <div className={cx('review-content')}>{review.content} </div>
                 </Panel>)
             })}
         </div>)

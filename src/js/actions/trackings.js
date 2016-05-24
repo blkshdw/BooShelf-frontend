@@ -39,7 +39,7 @@ export function updateTracking(trackingId, values) {
     };
 }
 
-export function createTracking(values) {
+export function createTracking(tracking) {
     return {
         [CALL_API]: {
             types: [
@@ -49,10 +49,10 @@ export function createTracking(values) {
             ],
             method: 'POST',
             endpoint: '/trackings',
-            data: values,
+            data: tracking,
             schema: Schemas.TRACKING
         },
-        meta: { values }
+        meta: { tracking }
     };
 }
 
@@ -107,7 +107,7 @@ export function fetchUserTrackings(userId) {
     };
 }
 
-export function deleteTracking(trackingId) {
+export function deleteTracking(tracking) {
     return {
         [CALL_API]: {
             types: [
@@ -116,8 +116,8 @@ export function deleteTracking(trackingId) {
                 REMOVE_TRACKING_ERROR
             ],
             method: 'DELETE',
-            endpoint: '/trackings/' + trackingId
+            endpoint: '/trackings/' + tracking.id
         },
-        meta: { trackingId }
+        meta: { tracking }
     };
 }

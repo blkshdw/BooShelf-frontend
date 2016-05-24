@@ -46,89 +46,88 @@ export default class LoginForm extends Component {
         const { intl, inProgress, error } = this.props;
         const { isRegistration } = this.state;
 
-        const sInfoAreaClasses = cx({'info-area': inProgress}, 'box-col');
+        const sInfoAreaClasses = cx({'info-area': inProgress}, 'box-col', 'form');
 
         return (
-            <div className={cx('box-row align-middle', 'login-form')} onKeyDown={this.handleOnEnter}>
-                <div className={cx('box-col', 'login-bx')}>
-                    <div className={sInfoAreaClasses}>
-                        {!isRegistration ?
-                            <form>
-                                <FormGroup
-                                    controlId="formBasicText"
-                                >
-                                    <ControlLabel>Username or email</ControlLabel>
-                                    <FormControl
-                                        type="text"
-                                        placeholder="Username or email"
-                                        value={this.state.username}
-                                        placeholder="Enter text"
-                                        onChange={(e) => this.setState({username: e.target.value})}
-                                    />
-                                    <FormControl.Feedback />
-                                    <HelpBlock>{error}</HelpBlock>
-                                </FormGroup>
-                                <FormGroup
-                                    controlId="formBasicText"
-                                >
-                                    <ControlLabel>Password</ControlLabel>
-                                    <FormControl
-                                        type="text"
-                                        value={this.state.password}
-                                        placeholder="Password"
-                                        onChange={(e) => this.setState({password: e.target.value})}
-                                    />
-                                    <FormControl.Feedback />
-                                </FormGroup>
-                            </form> :
-                            <form>
-                                <FormGroup
-                                    controlId="formBasicText"
-                                    validationState={this.getValidationEmail()}
-                                >
-                                    <ControlLabel>Username or email</ControlLabel>
-                                    <FormControl
-                                        type="text"
-                                        value={this.state.username}
-                                        placeholder="Enter text"
-                                        onChange={(e) => this.setState({username: e.target.value})}
-                                    />
-                                    <FormControl.Feedback />
-                                    <HelpBlock>Username should be at least 4 character long.</HelpBlock>
-                                </FormGroup>
-                                <FormGroup
-                                    controlId="formBasicText"
-                                    validationState={this.getValidationPassword()}
-                                >
-                                    <ControlLabel>Password</ControlLabel>
-                                    <FormControl
-                                        type="text"
-                                        value={this.state.password}
-                                        placeholder="Password"
-                                        onChange={(e) => this.setState({password: e.target.value})}
-                                    />
-                                    <FormControl.Feedback />
-                                    <HelpBlock>Password should be at least 8 character long</HelpBlock>
-                                </FormGroup>
-                            </form>
-                        }
-                        <div className={cx('error')}>{error}</div>
-                        <div className={cx('box-row align-right nowrap', 'content')}>
-                            {
-                            <CheckboxField
-                                className={cx('registration')}
-                                title={intl.formatMessage({ id: 'profileRegisterAndAuthReg' })}
-                                checked={isRegistration}
-                                onClick={this.handleRegistrationChange}
-                            />
+                <div className={cx('box-col align-middle', 'login-form', 'wrap')} onKeyDown={this.handleOnEnter}>
+                        <div className={cx('logo', 'wrap')} > </div>
+                        <div className={sInfoAreaClasses}>
+                            {!isRegistration ?
+                                <form>
+                                    <FormGroup
+                                        controlId="formBasicText"
+                                    >
+                                        <ControlLabel>Username or email</ControlLabel>
+                                        <FormControl
+                                            type="text"
+                                            placeholder="Username or email"
+                                            value={this.state.username}
+                                            placeholder="Enter text"
+                                            onChange={(e) => this.setState({username: e.target.value})}
+                                        />
+                                        <FormControl.Feedback />
+                                        <HelpBlock>{error}</HelpBlock>
+                                    </FormGroup>
+                                    <FormGroup
+                                        controlId="formBasicText"
+                                    >
+                                        <ControlLabel>Password</ControlLabel>
+                                        <FormControl
+                                            type="text"
+                                            value={this.state.password}
+                                            placeholder="Password"
+                                            onChange={(e) => this.setState({password: e.target.value})}
+                                        />
+                                        <FormControl.Feedback />
+                                    </FormGroup>
+                                </form> :
+                                <form>
+                                    <FormGroup
+                                        controlId="formBasicText"
+                                        validationState={this.getValidationEmail()}
+                                    >
+                                        <ControlLabel>Username or email</ControlLabel>
+                                        <FormControl
+                                            type="text"
+                                            value={this.state.username}
+                                            placeholder="Enter text"
+                                            onChange={(e) => this.setState({username: e.target.value})}
+                                        />
+                                        <FormControl.Feedback />
+                                        <HelpBlock>Username should be at least 4 character long.</HelpBlock>
+                                    </FormGroup>
+                                    <FormGroup
+                                        controlId="formBasicText"
+                                        validationState={this.getValidationPassword()}
+                                    >
+                                        <ControlLabel>Password</ControlLabel>
+                                        <FormControl
+                                            type="text"
+                                            value={this.state.password}
+                                            placeholder="Password"
+                                            onChange={(e) => this.setState({password: e.target.value})}
+                                        />
+                                        <FormControl.Feedback />
+                                        <HelpBlock>Password should be at least 8 character long</HelpBlock>
+                                    </FormGroup>
+                                </form>
                             }
-                            <Button onClick={isRegistration ? this.handleRegistrationSubmit : this.handleLoginSubmit}>
-                                {intl.formatMessage({ id: isRegistration ? 'profileRegisterAndAuthReg' : 'connectAuthorization' })}
-                            </Button>
+                            <div className={cx('error')}>{error}</div>
+                            <div className={cx('box-row align-right nowrap', 'content')}>
+                                {
+                                <CheckboxField
+                                    className={cx('registration')}
+                                    title={intl.formatMessage({ id: 'profileRegisterAndAuthReg' })}
+                                    checked={isRegistration}
+                                    onClick={this.handleRegistrationChange}
+                                />
+                                }
+                                <Button onClick={isRegistration ? this.handleRegistrationSubmit : this.handleLoginSubmit}>
+                                    {intl.formatMessage({ id: isRegistration ? 'profileRegisterAndAuthReg' : 'connectAuthorization' })}
+                                </Button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
         );
     }
 

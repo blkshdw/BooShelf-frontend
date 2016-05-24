@@ -11,6 +11,10 @@ import {
     CREATE_BOOK_SUCCESS,
     CREATE_BOOK_ERROR,
 
+    UPDATE_BOOK,
+    UPDATE_BOOK_SUCCESS,
+    UPDATE_BOOK_ERROR,
+
     BOOKS_FILTER_TITLE,
     BOOKS_FILTER_GENRE,
     BOOKS_FILTER_AUTHOR,
@@ -22,7 +26,7 @@ import {
 import without from 'lodash/array/without';
 const initialState = {
     isFetching: false,
-    isCreating: false,
+    isUpdating: false,
     updateCompleted: false,
     currentFilterAuthor: '',
     currentFilterTitle: '',
@@ -41,23 +45,28 @@ export default function(state = initialState, action) {
                 ...initialState,
             };
 
+        case UPDATE_BOOK:
         case CREATE_BOOK:
             return {
                 ...state,
                 error: '',
-                isCreating: true
+                isUpdating: true
             }
+
+        case UPDATE_BOOK_ERROR:
         case CREATE_BOOK_ERROR:
             return {
                 ...state,
                 error: error,
-                isCreating: false
+                isUpdating: false
             }
+
+        case UPDATE_BOOK_SUCCESS:
         case CREATE_BOOK_SUCCESS:
             return {
                 ...state,
                 error: '',
-                isCreating: false
+                isUpdating: false
             }
         case BOOKS_FILTER_TITLE:
             return {
@@ -86,22 +95,29 @@ export default function(state = initialState, action) {
             }
 
         case FETCH_BOOK:
+            const newBooks = state.fetchingBooks;
+            if (newBooks.indexOf(meta) < 0) {
+                newBooks.push(meta);
+            }
             return {
                 ...state,
-                isFetching: true
+                isFetching: true,
+                fetchingBooks: newBooks
             }
 
         case FETCH_BOOK_ERROR:
             return {
                 ...state,
                 isFetching: false,
-                error: error
+                error: error,
+                fetchingBooks: without(state.fetchingBooks, meta)
             }
 
         case FETCH_BOOK_SUCCESS:
             return {
                 ...state,
-                isFetching: false
+                isFetching: false,
+                fetchingBooks: without(state.fetchingBooks, meta)
             }
         default:
             return state;
