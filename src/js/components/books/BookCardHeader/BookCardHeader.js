@@ -23,7 +23,7 @@ export default class BookCardHeader extends Component {
         return (
             <div className={cx('usercard-header', 'box-row')}>
                     <div className="">
-                        <h2 className={cx('book-title')}> {book.title}
+                        <div className={cx('book-title')}> {book.title}
                             {this.state.updateBookDialogActive ? <WidgetEditBook
                             active={this.state.updateBookDialogActive}
                             updateBook={::this.handleUpdateBook}
@@ -36,7 +36,7 @@ export default class BookCardHeader extends Component {
                             genre={book.genre}
                             coverUrl={book.coverUrl}
                             toggleUpdateBookDialog={::this.toggleUpdateBookDialog}
-                        /> : ''}</h2>
+                        /> : ''}</div>
                         <div className={cx('added')} >
                             On the booShelf of <b>{book.popularity}</b> users
                         </div>

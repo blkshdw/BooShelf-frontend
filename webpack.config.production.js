@@ -29,14 +29,4 @@ baseConfig.module.loaders.push({
     //loaders: ['classnames', ExtractTextPlugin.extract('style', 'css!autoprefixer?browsers=last 3 versions!sass')]
 });
 
-baseConfig.module.loaders.push({
-    test: /(\.scss|\.css)$/,
-    include: /(node_modules)\/react-toolbox/,
-    loaders: [
-        require.resolve('style-loader'),
-        require.resolve('css-loader') + '?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
-        require.resolve('sass-loader') + '?sourceMap',
-    ]
-});
-
 module.exports = baseConfig;

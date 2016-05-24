@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import DatePicker from 'react-datepicker';
 import { debounce } from  'utils/decorators';
 import { Button, DropdownButton, MenuItem, ButtonToolbar, ButtonGroup, FormGroup, FormControl, Form } from 'react-bootstrap';
 import cx from './BooksHeader.styl';

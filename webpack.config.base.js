@@ -20,7 +20,6 @@ module.exports = {
             'react-router',
             'redux-router',
             'redux-combine-actions',
-            'react-toolbox',
             'bootstrap-loader'
         ]
     },
@@ -81,8 +80,5 @@ module.exports = {
             // { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=image/svg+xml' },
             // { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file' }
         ]
-    },
-    toolbox: {
-        theme: path.join(__dirname, 'src/css/toolbox-theme.scss')
     }
 };
