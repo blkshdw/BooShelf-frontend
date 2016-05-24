@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import cx from './BooksList.styl';
+import cx from './booksList.styl';
 import { genres } from 'constants/Common';
 import { ButtonToolbar, Button } from 'react-bootstrap';
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
