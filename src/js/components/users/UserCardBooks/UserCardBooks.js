@@ -47,17 +47,17 @@ export default class UserCardBooks extends Component {
                         /> : ''
                     }
                 </section>
-                <section className={cx('user-card-books')}>
+                <section style={{"height": "80%"}} className={cx('user-card-books')}>
                     {editable ? <BootstrapTable hover options={{onRowClick: (row) => this.toggleEditTrackingDialog(row)}}  data={trackings} striped={true} hover={true}>
                         <TableHeaderColumn dataFormat={(cell, row) => <Link to={"/books/" + row.book}>{books[row.book] ? books[row.book].title : row.id}</Link>} dataField="book" dataSort isKey={true} dataAlign="center" dataSort={true}>Book</TableHeaderColumn>
-                        <TableHeaderColumn dataField="pagesRead" dataFormat={(cell, row) => {return (cell || cell === 0) ? Math.round((cell / row.pagesCount) * 100) : ''}} dataSort>Progress, %</TableHeaderColumn>
+                        <TableHeaderColumn dataField="pagesRead" dataFormat={(cell, row) => {if(row.status === 2) {return 100 } else { return (cell || cell === 0) ? Math.round((cell / row.pagesCount || 0) * 100) : ''}}} dataSort>Progress, %</TableHeaderColumn>
                         <TableHeaderColumn dataFormat={(cell, row) => {return cell ? moment(cell).format('DD/MM/YY') : ''}} dataField="startedReading" dataSort >Started reading</TableHeaderColumn>
                         <TableHeaderColumn dataFormat={(cell, row) => {return cell ? moment(cell).format('DD/MM/YY') : ''}} dataField="finishedReading" dataSort >Finished reading</TableHeaderColumn>
                         <TableHeaderColumn dataField="status" dataFormat={(cell, row) => TRACKING_TYPES[cell] ? TRACKING_TYPES[cell] : ''} dataSort>Status</TableHeaderColumn>
                     </BootstrapTable> :
                         <BootstrapTable hover data={trackings} striped={true} hover={true}>
                             <TableHeaderColumn dataFormat={(cell, row) => <Link to={"/books/" + row.book}>{books[row.book] ? books[row.book].title : row.id}</Link>} dataField="book" dataSort isKey={true} dataAlign="center" dataSort={true}>Book</TableHeaderColumn>
-                            <TableHeaderColumn dataField="pagesRead" dataFormat={(cell, row) => {return cell ? Math.round(cell / row.pagesCount) : ''}} dataSort>Progress, %</TableHeaderColumn>
+                            <TableHeaderColumn dataField="pagesRead" dataFormat={(cell, row) => {if(row.status === 2) {return 100 } else { return (cell || cell === 0) ? Math.round((cell / row.pagesCount || 0) * 100) : ''}}} dataSort>Progress, %</TableHeaderColumn>
                             <TableHeaderColumn dataFormat={(cell, row) => {return cell ? moment(cell).format('DD/MM/YY') : ''}} dataField="startedReading" dataSort >Started reading</TableHeaderColumn>
                             <TableHeaderColumn dataFormat={(cell, row) => {return cell ? moment(cell).format('DD/MM/YY') : ''}} dataField="finishedReading" dataSort >Finished reading</TableHeaderColumn>
                             <TableHeaderColumn dataField="status" dataFormat={(cell, row) => TRACKING_TYPES[cell] ? TRACKING_TYPES[cell] : ''} dataSort>Status</TableHeaderColumn>

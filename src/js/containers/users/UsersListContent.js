@@ -35,8 +35,8 @@ export default class UsersListContent extends Component {
         }
         return (
             <div className="users-list">
-                <section style={{"height": "80%"}}>
-                    <BootstrapTable hover height="90%" options={{onRowClick: (row) => {pushState(null, '/users/' + row.id)}}}  data={users} striped={true} hover={true}>
+                <section >
+                    <BootstrapTable hover options={{onRowClick: (row) => {pushState(null, '/users/' + row.id)}}}  data={users} striped={true} hover={true}>
                         <TableHeaderColumn dataField="username" dataSort isKey={true} dataAlign="center" dataSort={true}>Username</TableHeaderColumn>
                         <TableHeaderColumn dataField="fullName" dataSort>Full Name</TableHeaderColumn>
                         <TableHeaderColumn dataField="birthdayDate" dataFormat={(cell, row) => {return cell ? moment(cell).format('DD/MM/YY') : ''}} dataSort >Birthday</TableHeaderColumn>

@@ -24,7 +24,7 @@ export const TIME_RANGES = {
 };
 
 export const TRACKING_TYPES = [
-   "Started reading",
+   "Want to read",
         "In progress",
   "Finished reading"
 ]
