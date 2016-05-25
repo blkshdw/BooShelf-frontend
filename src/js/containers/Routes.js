@@ -8,7 +8,7 @@ import Logout from './Logout';
 import AnonymousApp from './AnonymousApp';
 import AuthenticatedApp from './AuthenticatedApp';
 import NotFound from 'components/NotFound';
-import { UserCardBooksContent, UserCardContent, UsersListContent } from './users';
+import { UserCardBooksContent, UserCardContent, UsersListContent, UserCardReviewsContent } from './users';
 import { MeContent, MyBooks, MyReviews } from './me';
 import { BookCardContent, BooksContent } from './books';
 
@@ -42,13 +42,17 @@ export default (
                 <Redirect from="me" to="/me/reviews"/>
                 <Route path="me" components={{ content: MeContent}} >
                     <Route path="reviews" component={MyReviews} />
-                    <Route path="books/:bookType" component={MyBooks} />
+                    <Route path="books/:trackingType" component={MyBooks} />
                 </Route>
                 <Route path="books" components={{ content: BooksContent }} />
                 <Route path="books/:bookId" components={{ content: BookCardContent }} />
                 <Route path="users" components={{ content: UsersListContent }} />
-                <Route path="users/:userId" components={{ content: UserCardContent }} />
-                <Route path="users/:userId/books" components={{content: UserCardBooksContent}} />
+                <Redirect from="users/:userId" to="/users/:userId/books/all"/>
+                <Route path="users/:userId" components={{ content: UserCardContent }}>
+                    <Route path="books/:trackingType" component={UserCardBooksContent} />
+                    <Route path="reviews" components={UserCardReviewsContent} />
+                </Route>
+
             </Route>
         </Route>
         <Route path="*" component={NotFound} />

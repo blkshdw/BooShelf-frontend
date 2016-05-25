@@ -40,7 +40,6 @@ export default class WidgetUserDialog extends Component {
                     <Modal.Title>Add book</Modal.Title>
 
                 </Modal.Header>
-                {error && <div style={{"color": "red", "marginLeft": "160px", "marginTop": "5px"}}>Error: {error}</div> }
                 <Modal.Body>
                     <Form horizontal>
                         <FormGroup controlId="formHorizontalName">
@@ -118,6 +117,8 @@ export default class WidgetUserDialog extends Component {
 
                     </Form>
                 </Modal.Body>
+                {error && <div style={{"color": "red", "marginLeft": "160px"}}>Error: {error}</div> }
+
                 <Modal.Footer>
                     <Button onClick={toggleCreateBookDialog} disabled={isCreating}>Cancel</Button>
                     <Button bsStyle="primary" onClick={::this.handleCreateBook} disabled={isCreating}>Create book</Button>

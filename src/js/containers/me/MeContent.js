@@ -26,12 +26,11 @@ export default class MeContent extends Component {
     render() {
 
         const { user, children, updateProfile, isUpdating, error } = this.props;
-        console.log(children);
         return (
             <div  className={cx('box-col')}>
                 <UserCardHeader updateUser={updateProfile} isUpdating={isUpdating} error={error} user={user} editable/>
                 <div className={cx('me-container')}>
-                    <UserCardNavigation />
+                    <UserCardNavigation isMe />
                     {children}
                 </div>
             </div>

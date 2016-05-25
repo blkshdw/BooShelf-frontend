@@ -73,7 +73,7 @@ export default class LoginForm extends Component {
                                     >
                                         <ControlLabel>Password</ControlLabel>
                                         <FormControl
-                                            type="text"
+                                            type="password"
                                             value={this.state.password}
                                             placeholder="Password"
                                             onChange={(e) => this.setState({password: e.target.value})}
@@ -102,7 +102,7 @@ export default class LoginForm extends Component {
                                     >
                                         <ControlLabel>Password</ControlLabel>
                                         <FormControl
-                                            type="text"
+                                            type="password"
                                             value={this.state.password}
                                             placeholder="Password"
                                             onChange={(e) => this.setState({password: e.target.value})}
@@ -122,7 +122,7 @@ export default class LoginForm extends Component {
                                     onClick={this.handleRegistrationChange}
                                 />
                                 }
-                                <Button onClick={isRegistration ? this.handleRegistrationSubmit : this.handleLoginSubmit}>
+                                <Button disabled={isRegistration && (this.getValidationEmail() == 'error' ||  this.getValidationPassword() == 'error')} onClick={isRegistration ? this.handleRegistrationSubmit : this.handleLoginSubmit}>
                                     {intl.formatMessage({ id: isRegistration ? 'profileRegisterAndAuthReg' : 'connectAuthorization' })}
                                 </Button>
                             </div>

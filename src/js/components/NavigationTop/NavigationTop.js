@@ -30,7 +30,7 @@ export default class NavigationTop extends Component {
                     <Navbar.Toggle onClick={toggleLeftPanel} className={cx('toggle-sidebar')}/>
 
                     <Navbar.Brand>
-                        <a href="#">BooShelf</a>
+                        <div className={cx('boo-logo')} />
                     </Navbar.Brand>
 
                     <Navbar.Toggle onClick={::this.toggleMenu} className={cx('expand-menu')}>
@@ -41,8 +41,8 @@ export default class NavigationTop extends Component {
                     </Navbar.Toggle>
                 </Nav>
                 <Navbar.Collapse pullRight>
-                    <Nav pullRight onSelect={path => {path && pushState(null, path)}}>
-                        <NavItem >{user.name}</NavItem>
+                    <Nav bsSize="xsmall" pullRight onSelect={path => {path && pushState(null, path)}}>
+                        <NavItem eventKey="/me" >{user.username}</NavItem>
                         <NavItem eventKey="/logout">Logout</NavItem>
                     </Nav>
                 </Navbar.Collapse>

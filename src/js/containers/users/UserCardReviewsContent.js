@@ -2,22 +2,21 @@ import React, { Component, PropTypes } from 'react';
 import { UserCardReviews } from 'components/users';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import { myReviewsContentSelector } from 'selectors';
+import { userCardReviewsContentSelector } from 'selectors';
 import WidgetUserDialog from 'components/WidgetUserDialog';
-import cx from './MeContent.styl';
-import { fetchMyReviews, updateReview, createReview, fetchBook, deleteReview } from 'actions';
+import { fetchUserReviews, updateReview, createReview, fetchBook, deleteReview } from 'actions';
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        fetchMyReviews,
+        fetchUserReviews,
         updateReview,
         deleteReview,
         fetchBook
     }, dispatch);
 }
 
-@connect(myReviewsContentSelector, mapDispatchToProps)
-export default class MyReviews extends Component {
+@connect(userCardReviewsContentSelector, mapDispatchToProps)
+export default class UserCardReviewsContent extends Component {
     static PropTypes = {
         reviews: PropTypes.array,
         fetchBook: PropTypes.func,
@@ -29,7 +28,7 @@ export default class MyReviews extends Component {
     }
 
     componentWillMount() {
-        this.props.fetchMyReviews();
+        this.props.fetchUserReviews(this.props.userId);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -45,7 +44,7 @@ export default class MyReviews extends Component {
     render() {
         const { reviews, books, deleteReview, updateReview } = this.props;
         return (<div className="box-row">
-            <UserCardReviews reviews={reviews} books={books} deleteReview={deleteReview} updateReview={updateReview} editable/>
+            <UserCardReviews reviews={reviews} books={books} deleteReview={deleteReview} updateReview={updateReview}/>
         </div>)
     }
 }

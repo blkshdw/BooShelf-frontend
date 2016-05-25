@@ -16,18 +16,18 @@ export default class UserCardHeader extends Component {
     }
 
     render() {
-        const {user} = this.props;
+        const {user, isMe} = this.props;
 
         return (
             
             <div className={cx('usercard-navigation')}>
                 <ul className={cx('main-menu', 'nav nav-stacked affix')}>
-                    <li><ButtonPrimary className={cx('no-decoration vertical-align', 'nav-but')} to="/me/reviews">Reviews</ButtonPrimary></li>
-                    <li><ButtonPrimary className={cx('no-decoration vertical-align', 'nav-but')} to="/me/books/all">My books</ButtonPrimary>
+                    <li><ButtonPrimary className={cx('no-decoration vertical-align', 'nav-but')} to={isMe ? `/me/reviews` : `/users/${user.id}/reviews`}>Reviews</ButtonPrimary></li>
+                    <li><ButtonPrimary className={cx('no-decoration vertical-align', 'nav-but')} to={isMe ? '/me/books/all' : `/users/${user.id}/books/all`}>Books</ButtonPrimary>
                         <ul className={cx('sub-menu')}>
-                            <li><ButtonPrimary className={cx('no-decoration vertical-align', 'nav-but')} to="/me/books/toRead">To read</ButtonPrimary></li>
-                            <li><ButtonPrimary className={cx('no-decoration vertical-align', 'nav-but')} to="/me/books/inProgress">In progress</ButtonPrimary></li>
-                            <li><ButtonPrimary className={cx('no-decoration vertical-align', 'nav-but')} to="/me/books/finished">Finished</ButtonPrimary></li>
+                            <div className="no-decoration"><ButtonPrimary className={cx('no-decoration vertical-align', 'nav-but')} to={isMe ? '/me/books/toRead' : `/users/${user.id}/books/toRead`}>To read</ButtonPrimary></div>
+                            <div className="no-decoration"><ButtonPrimary className={cx('no-decoration vertical-align', 'nav-but')} to={isMe ? '/me/books/inProgress' : `/users/${user.id}/books/inProgress`}>In progress</ButtonPrimary></div>
+                            <div className="no-decoration"><ButtonPrimary className={cx('no-decoration vertical-align', 'nav-but')} to={isMe ? '/me/books/finished' : `/users/${user.id}/books/finished`}>Finished</ButtonPrimary></div>
                         </ul>
                     </li>
                 </ul>

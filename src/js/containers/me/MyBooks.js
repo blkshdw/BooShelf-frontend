@@ -1,13 +1,16 @@
 import React, { Component, PropTypes } from 'react';
 import { fetchBook, fetchTrackings, updateTracking, deleteTracking } from 'actions';
+import { UserCardBooks } from 'components/users';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import { pushState } from 'redux-router';
 import { myTrackingsContentSelector } from 'selectors';
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
         fetchTrackings,
         fetchBook,
+        pushState,
         updateTracking,
         deleteTracking
     }, dispatch);
@@ -16,8 +19,6 @@ function mapDispatchToProps(dispatch) {
 @connect(myTrackingsContentSelector, mapDispatchToProps)
 export default class MyBooks extends Component {
     static PropTypes = {
-        user: PropTypes.object,
-        children: PropTypes.node.isRequired,
         fetchBook: PropTypes.func,
         fetchTrackings: PropTypes.func,
         updateTracking: PropTypes.func,
@@ -43,8 +44,7 @@ export default class MyBooks extends Component {
     }
 
     render() {
-        return <div >
-            It is my book
-        </div>
+        const { trackings, pushState, books, deleteTracking, updateTracking, isUpdating, progress, type } = this.props;
+        return (<UserCardBooks trackings={trackings} editable pushState={pushState} progress={progress} books={books} updateTracking={updateTracking} isUpdating={isUpdating} type={type} /> )
     }
 }

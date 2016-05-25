@@ -99,7 +99,7 @@ export function fetchUserReviews(userId) {
                 FETCH_REVIEWS_ERROR
             ],
             method: 'GET',
-            endpoint: '/users/' + userId + 'reviews',
+            endpoint: '/users/' + userId + '/reviews',
             schema: Schemas.REVIEW_ARRAY
         },
         meta: { userId }

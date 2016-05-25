@@ -10,9 +10,11 @@
 :local .title-panel {
   display: flex;
   justify-content: space-between;
+
   .title {
     white-space: nowrap;
     overflow: hidden;
+
     text-overflow: ellipsis;
     line-height: normal;
     width: 75%;
@@ -32,8 +34,6 @@
     :local .review-content {
       white-space: pre-wrap;
       font-size: small;
-      max-height: 300px;
-      overflow: scroll;
     }
 
   :local .rating {
@@ -41,8 +41,8 @@
   }
     :local .review-name {
       display: flex;
-      flex-direction: row;
       font-style: italic;
+      flex-direction: row-reverse;
       font-weight: bold;
       justify-content: space-between;
     }

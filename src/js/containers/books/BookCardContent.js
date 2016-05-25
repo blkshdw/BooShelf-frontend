@@ -45,7 +45,7 @@ export default class BookCardContent extends Component {
 
     render() {
         const {book, editable, isFetching, isUpdatingReview, deleteReview, updateReview, createReview, updateBook, users, myReview, reviews, isUpdating, isUpdatingTracking, createTracking, inMyCollection, deleteTracking, myTracking, bookId} = this.props;
-        if (!book) {
+        if (!book || !reviews || isFetching) {
             return <Loader />
         }
         return (

@@ -27,6 +27,7 @@ import without from 'lodash/array/without';
 const initialState = {
     isFetching: false,
     isUpdating: false,
+    error: '',
     updateCompleted: false,
     currentFilterAuthor: '',
     currentFilterTitle: '',
@@ -44,6 +45,25 @@ export default function(state = initialState, action) {
             return {
                 ...initialState,
             };
+
+        case FETCH_BOOKS:
+            return {
+                ...state,
+                isFetching: true
+            }
+
+        case FETCH_BOOKS_SUCCESS:
+            return {
+                ...state,
+                isFetching: false
+            }
+
+        case FETCH_BOOKS_ERROR:
+            return {
+                ...state,
+                isFetching: false
+            }
+
 
         case UPDATE_BOOK:
         case CREATE_BOOK:

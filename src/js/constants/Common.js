@@ -23,6 +23,12 @@ export const TIME_RANGES = {
     week: "week"
 };
 
+export const TRACKING_TYPES = [
+   "Started reading",
+        "In progress",
+  "Finished reading"
+]
+
 export const genres = [
     "Romance", "Philosophy", "Detective", "Drama", "Comedy", "Horror", "Documental", "Educational", "Science", "Musical", "Comics", "Manga", "Esoteric", "Poetry"
 ]

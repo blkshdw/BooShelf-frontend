@@ -27,7 +27,7 @@ import {
 const initialState = {
     isFetching: false,
     isUpdating: false,
-    error: null,
+    error: '',
 };
 
 export default function(state = initialState, action) {

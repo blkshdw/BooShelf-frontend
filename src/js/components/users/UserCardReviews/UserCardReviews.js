@@ -32,7 +32,7 @@ export default class UserCardReviews extends Component {
     }
 
     render() {
-        const { reviews, books } = this.props;
+        const { reviews, books, editable } = this.props;
         const { currentEditReview, currentDeleteReview } = this.state;
         return (<div className={cx('reviews-list')}>
             {
@@ -72,10 +72,11 @@ export default class UserCardReviews extends Component {
                 const header = (
                     <div className={cx('title-panel')}>
                         <div className={cx('title')}><Link to={'/books/' + review.book} >{books[review.book] ? books[review.book].title || review.book : review.book}</Link></div>
-                        <ButtonToolbar>
+                        {editable && <ButtonToolbar>
                             <Button onClick={() => this.handleEditReview(review)}>Edit</Button>
                             <Button bsStyle="danger" onClick={() => this.handleDeleteReview(review)} >Delete</Button>
-                        </ButtonToolbar>
+                        </ButtonToolbar>}
+
                     </div>
                 );
                 return (<Panel header={header} key={review.id}

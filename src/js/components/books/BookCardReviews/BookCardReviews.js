@@ -56,7 +56,7 @@ export default class UserCardReviews extends Component {
                         isCreatingReview ?
                             <WidgetReviewCreate
                                 book={book}
-                                isUpdating={isUpdating}
+                                isCreating={isUpdating}
                                 createReview={(values) => {
                                 this.props.createReview(values);
                             }
@@ -82,6 +82,10 @@ export default class UserCardReviews extends Component {
                             /> : ''
 
                     }
+
+                    {!reviews.length && <div>
+                        There are no reviews yet. Would you like to add one?
+                    </div>}
 
                     {reviews.map(review => {
                         const header = (

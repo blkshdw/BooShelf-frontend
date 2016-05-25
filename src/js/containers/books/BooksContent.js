@@ -4,6 +4,7 @@ import cx from './BooksContent.styl';
 import {connect} from 'react-redux';
 import { pushState } from 'redux-router';
 import {bindActionCreators} from 'redux';
+import Loader from 'components/Loader';
 import { booksListSelector } from 'selectors';
 import WidgetUserDialog from 'components/WidgetUserDialog';
 import { fetchBooks, createBook, booksFilterTitle, booksFilterGenre, booksFilterAuthor } from 'actions';
@@ -34,7 +35,6 @@ export default class BooksContent extends Component {
 
     render() {
         const { books, booksStatus, booksFilterAuthor, createBook, booksFilterTitle, pushState, booksFilterGenre } = this.props;
-
         return (
             <div className={cx('books-content')}>
                 <BooksHeader
@@ -45,7 +45,9 @@ export default class BooksContent extends Component {
                     currentFilterGenre={booksStatus.currentFilterGenre}
                     currentFilterAuthor={booksStatus.currentFilterAuthor}
                 />
-                <BooksList books={books} createBook={createBook} pushState={pushState} isCreating={booksStatus.isCreating} error={booksStatus.error} />
+                {!booksStatus.isFetching ? <BooksList books={books} createBook={createBook} pushState={pushState} isUpdating={booksStatus.isUpdating} error={booksStatus.error} /> :
+                    <Loader />
+                }
             </div>
         )
     }

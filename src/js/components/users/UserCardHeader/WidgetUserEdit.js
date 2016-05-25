@@ -18,7 +18,8 @@ export default class WidgetUserEdit extends Component {
         this.state = {
             fullName: props.fullName,
             about: props.about,
-            birthdayDate: props.birthdayDate
+            birthdayDate: props.birthdayDate,
+            color: props.color || ''
         }
     }
 
@@ -104,7 +105,8 @@ export default class WidgetUserEdit extends Component {
     handleUpdateUser() {
         const query = {
             fullName: this.state.fullName,
-            about: this.state.about
+            about: this.state.about,
+            color: this.state.color
         }
         if(this.state.birthdayDate !== "Invalid date" && this.state.birthdayDate) {
             query.birthdayDate = this.state.birthdayDate;

@@ -99,11 +99,10 @@ export function fetchUserTrackings(userId) {
                 FETCH_TRACKINGS_ERROR
             ],
             method: 'GET',
-            endpoint: '/users/' + userId + 'trackings',
-            data: values,
+            endpoint: '/users/' + userId + '/trackings',
             schema: Schemas.TRACKING_ARRAY
         },
-        meta: { values }
+        meta: { userId }
     };
 }
 

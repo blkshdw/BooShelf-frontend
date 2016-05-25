@@ -1,9 +1,11 @@
 import { isEmpty, last } from 'lodash';
 import Avatar from 'react-avatar';
+import { SketchPicker } from 'react-color';
 import React, { Component, PropTypes } from 'react';
 import {Button} from 'react-bootstrap';
 import cx from './userCardHeader.styl';
 import moment from 'moment';
+import { debounce } from  'utils/decorators';
 import WidgetUserEdit from './WidgetUserEdit';
 
 export default class UserCardHeader extends Component {
@@ -14,7 +16,8 @@ export default class UserCardHeader extends Component {
     }
 
     state = {
-        updateUserDialogActive: false
+        updateUserDialogActive: false,
+        colorPickerVisible: false
     }
 
     render() {
@@ -35,14 +38,18 @@ export default class UserCardHeader extends Component {
                             toggleCreateUserDialog={::this.toggleUpdateUserDialog}
                         /> : ''}</h2>
                         <div className={cx('birthday')} >
-                            {user.birthdayDate ? moment().diff(user.birthdayDate, 'years') + " years old"  : 'Birth date not stated'}
+                            {user.birthdayDate ? moment().diff(user.birthdayDate, 'years') + " years old"  : 'Birthday not stated'}
                         </div>
                         <div className={cx('about')} >
                             {user.about}
                         </div>
                         <br />
                     </div>
-                    <div className="col-sm-2"><a className="pull-right"><Avatar name={user.fullName || user.username}/></a>
+                    <div  className="col-sm-2"><a className="pull-right"><Avatar color={user.color} name={user.fullName || user.username}/></a>
+                        {editable &&
+                        <Button onClick={() => this.setState({colorPickerVisible: !this.state.colorPickerVisible})}
+                                className={cx('color-btn')} bsSize="xsmall">Change color</Button> }
+                        {this.state.colorPickerVisible ? <div className={cx('color-picker')}> <SketchPicker onChangeComplete={::this.handleChangeColor} color={user.color}/> </div> : ''}
                         </div>
             </div>
         );
@@ -51,4 +58,13 @@ export default class UserCardHeader extends Component {
     toggleUpdateUserDialog() {
         this.setState({updateUserDialogActive: !this.state.updateUserDialogActive});
     }
+
+    @debounce(500)
+    handleChangeColor(color){
+        this.props.updateUser({
+            color: color.hex
+        })
+    }
+
+
 }

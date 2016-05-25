@@ -2,6 +2,9 @@ import {
     createDeepEqualSelector,
     entitiesArraySelector,
     statusSelector,
+    entitiesSelector,
+    routerParamSelector,
+    currentUserSelector
 } from './common';
 
 export const filteredUsersSelector = createDeepEqualSelector(
@@ -13,7 +16,6 @@ export const filteredUsersSelector = createDeepEqualSelector(
                 if (user._deleted) {
                     return false;
                 }
-
                 return true;
             });
     }
@@ -22,8 +24,18 @@ export const filteredUsersSelector = createDeepEqualSelector(
 
 export const usersListSelector = createDeepEqualSelector(
     [filteredUsersSelector, statusSelector('users')],
-    (filteredUsers, usersStatus) => ({
+    (filteredUsers, usersStatus, userId) => ({
         users: filteredUsers,
+        isFetching: usersStatus.isFetching
+    })
+);
+
+export const userCardSelector = createDeepEqualSelector(
+    [entitiesSelector('users'), statusSelector('users'), routerParamSelector('userId'), currentUserSelector],
+    (users, usersStatus, userId, currentUser) => ({
+        user: users[userId],
+        userId: userId,
+        isMe: currentUser.id === userId,
         isFetching: usersStatus.isFetching
     })
 );
