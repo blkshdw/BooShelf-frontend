@@ -49,7 +49,7 @@ export default class BooksList extends Component {
                         </Button>
                     </ButtonToolbar>
                 </section>
-                <section height="10rem" className={cx('people-content-table')}>
+                <section style={{"height": "80%"}} className={cx('people-content-table')}>
                     <BootstrapTable hover height="90%" options={{onRowClick: (row) => {pushState(null, '/books/' + row.id)}}}  data={books} striped={true} hover={true}>
                         <TableHeaderColumn dataField="title" dataSort isKey={true} dataAlign="center" dataSort={true}>Title</TableHeaderColumn>
                         <TableHeaderColumn dataField="author" dataSort>Author</TableHeaderColumn>
