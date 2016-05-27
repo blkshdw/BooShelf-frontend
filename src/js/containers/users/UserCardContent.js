@@ -47,7 +47,6 @@ export default class UserCardContent extends Component {
     render() {
 
         const { user, children } = this.props;
-        console.log(children);
         if (!user) {
             return <Loader />
         }

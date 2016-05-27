@@ -8,7 +8,7 @@ export default class WidgetUserEdit extends Component {
         updateReview: PropTypes.func,
         toggleCreateReviewDialog: PropTypes.func,
         active: PropTypes.bool,
-        isUpdating: PropTypes.bool
+        isCreating: PropTypes.bool
     };
 
     constructor(props) {
@@ -28,7 +28,7 @@ export default class WidgetUserEdit extends Component {
     }
 
     render() {
-        const {active, closeDialogs, isUpdating, book, error} = this.props;
+        const {active, closeDialogs, isCreating, book, error} = this.props;
 
         return (
             <Modal show={active} onHide={closeDialogs} bsSize="large">
@@ -87,8 +87,8 @@ export default class WidgetUserEdit extends Component {
                 </Modal.Body>
 
                 <Modal.Footer>
-                    <Button disabled={isUpdating} onClick={closeDialogs}>Cancel</Button>
-                    <Button disabled={isUpdating} bsStyle="primary" onClick={::this.handleCreateReview}>Update review</Button>
+                    <Button disabled={isCreating} onClick={closeDialogs}>Cancel</Button>
+                    <Button disabled={isCreating} bsStyle="primary" onClick={::this.handleCreateReview}>Add review</Button>
                 </Modal.Footer>
             </Modal>
         );
