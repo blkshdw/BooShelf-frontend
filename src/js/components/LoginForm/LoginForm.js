@@ -66,7 +66,6 @@ export default class LoginForm extends Component {
                                             onChange={(e) => this.setState({username: e.target.value})}
                                         />
                                         <FormControl.Feedback />
-                                        <HelpBlock>{error}</HelpBlock>
                                     </FormGroup>
                                     <FormGroup
                                         controlId="formBasicText"

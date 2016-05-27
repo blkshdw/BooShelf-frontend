@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { Panel, Button, ButtonToolbar, Well } from 'react-bootstrap';
 import DeleteModal from 'components/DeleteModal';
 import StarRating from 'react-star-rating';
+import Link from 'react-router/lib/Link';
 import WidgetReviewEdit from 'components/WidgetReviewEdit';
 import WidgetReviewCreate from 'components/WidgetReviewCreate';
 import cx from './UserCardReviews.styl';
@@ -96,9 +97,9 @@ export default class UserCardReviews extends Component {
                                         <Button onClick={() => this.handleEditReview(review)}>Edit</Button>
                                         <Button bsStyle="danger" onClick={() => this.handleDeleteReview(review)} >Delete</Button>
                                     </ButtonToolbar> :
-                                    <div className="author">
+                                    <Link to={'/users/' + review.createdBy} className="author">
                                         {users[review.createdBy] ? users[review.createdBy].fullName || users[review.createdBy].username : ''}
-                                    </div>
+                                    </Link>
                                 }
                             </div>
                         );
