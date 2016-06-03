@@ -44,6 +44,7 @@ export default function(state = initialState, action) {
         case LOGOUT_SUCCESS:
             return {
                 ...initialState,
+                fetchingBooks: []
             };
 
         case FETCH_BOOKS:
@@ -134,6 +135,7 @@ export default function(state = initialState, action) {
             }
 
         case FETCH_BOOK_SUCCESS:
+            console.log(meta);
             return {
                 ...state,
                 isFetching: false,

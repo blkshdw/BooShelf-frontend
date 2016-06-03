@@ -89,7 +89,10 @@ export default function(state = initialState, action) {
         };
 
     case LOGOUT_SUCCESS:
-        return initialState;
+        return {
+            ...initialState,
+            fetchingUsers: []
+        }
 
     default:
         return state;
